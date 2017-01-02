@@ -9,7 +9,7 @@ const reqStr = {
 const schema = new Schema({
   name: reqStr,
   code: reqStr,
-  desc: String
+  description: String
 });
 
 module.exports = mongoose.model('House', schema);
