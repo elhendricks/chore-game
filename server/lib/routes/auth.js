@@ -4,6 +4,8 @@ const User  = require('../models/user');
 const token = require('../auth/token');
 const ensureAuth = require('../auth/ensure-auth')();
 
+// TODO: include routes in app.js
+
 router
   .post('/validate', ensureAuth, (req, res) => {
       res.json({ valid: true });
