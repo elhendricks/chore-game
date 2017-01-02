@@ -17,13 +17,12 @@ router
     })
 
     .get('/:id', (req, res, next) => {
-        const id = req.params.id;
-        User.findById(id)
+        User.findById(req.params.id)
             .lean()
             .then(user => {
                 if(!user) throw {
                     code: 404,
-                    error: `user ${id} does not exist`
+                    error: `user ${req.params.id} does not exist`
                 };
                 res.send(user);
             })
