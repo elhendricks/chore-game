@@ -14,7 +14,7 @@ import uiRouter from 'angular-ui-router';
 // import 'ng-dialog/css/ngDialog-theme-default.css';
 
 //route, http config and auth setup
-import http from './http';
+// import http from './http';
 import routes  from './routes';
 // import auth from './auth';
 
@@ -22,14 +22,14 @@ const app = angular.module('myApp', [
     components,
     services,
     uiRouter,
-    defaultRoute, 
-    angular.module('ui.router.state.events').name,
+    defaultRoute//, 
+    // angular.module('ui.router.state.events').name,
     // resource,
     // dialog,
     // animate
 ]);
 
-app.config(http);
+// app.config(http);
 app.config(routes);
 // app.run(auth);
 
