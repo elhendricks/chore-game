@@ -13,7 +13,7 @@ router
   })
 
   .get('/:id', (req, res, next) => {
-    // const houseId = req.params.id;
+    const houseId = req.params.id;
 
     Promise
       .all([
@@ -21,17 +21,15 @@ router
           .findById(req.params.id)
           .lean(),
         Chore
-          .find({ houseId: "586ac91819eb61b190e9383f" })
+          .find({ houseId })
           .select('name')
+          .lean(),
+        User
+          .find(({ houseId }))
+          .select('username')
           .lean()
-        // User
-        //   .find(({ houseId: req.params.id }))
-        //   .select('username')
-        //   .lean()
       ])
-      .then((arr) => {
-        // console.log('array', arr);
-        [house, chores, users] = arr;
+      .then(([house, chores, users]) => {
         house.chores = chores;
         house.users = users;
         res.send(house);
