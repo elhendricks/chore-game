@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const reqStr = {
   type: String,
-  required: True
+  required: true
 };
 
 const schema = new Schema({

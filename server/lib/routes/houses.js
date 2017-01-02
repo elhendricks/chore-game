@@ -36,3 +36,5 @@ router
       })
       .send(next);
   })
+
+  module.exports = router;
