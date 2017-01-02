@@ -1,0 +1,15 @@
+{
+  "name": "almanac",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cd app && npm i && npm test && cd ../server && npm i && npm test"
+  },
+  "dependencies": {
+    "angular-ui-router": "^1.0.0-beta.3"
+  },
+  "devDependencies": {
+    "protractor": "^4.0.13"
+  }
+}
