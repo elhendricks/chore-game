@@ -17,12 +17,14 @@ import uiRouter from 'angular-ui-router';
 // import http from './http';
 import routes  from './routes';
 // import auth from './auth';
+import ngMaterial from 'angular-material';
 
 const app = angular.module('myApp', [
     components,
     services,
     uiRouter,
-    defaultRoute//, 
+    defaultRoute,
+    ngMaterial 
     // angular.module('ui.router.state.events').name,
     // resource,
     // dialog,
