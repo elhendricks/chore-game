@@ -17,7 +17,7 @@ const schema = new Schema({
     description: {
         type: String
     },
-    house: {
+    houseId: {
         type: Schema.Types.ObjectId,
         ref: 'House'
     },

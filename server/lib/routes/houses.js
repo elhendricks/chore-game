@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser').json();
 const House = require('../models/house');
 const Chore = require('../models/chore');
 const User = require('../models/user');
@@ -13,28 +13,30 @@ router
   })
 
   .get('/:id', (req, res, next) => {
-    const houseId = req.params.id;
+    // const houseId = req.params.id;
 
     Promise
       .all([
         House
-          .findById(houseId)
+          .findById(req.params.id)
           .lean(),
         Chore
-          .find({ houseId })
+          .find({ houseId: "586ac91819eb61b190e9383f" })
           .select('name')
-          .lean(),
-        User
-          .find(({ houseId }))
-          .select('username')
           .lean()
+        // User
+        //   .find(({ houseId: req.params.id }))
+        //   .select('username')
+        //   .lean()
       ])
-      .then(([house, chores, users]) => {
+      .then((arr) => {
+        // console.log('array', arr);
+        [house, chores, users] = arr;
         house.chores = chores;
         house.users = users;
         res.send(house);
       })
-      .send(next);
+      .catch(next);
   })
 
   module.exports = router;

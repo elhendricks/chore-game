@@ -12,8 +12,18 @@ router
     .get('/', (req, res, next) => {
         
         Chore.find()
+            .populate({
+                path: 'houseId',
+                select: 'name'
+            })
             .lean()
             .then(chores => res.send(chores))
+            .catch(next);
+    })
+
+    .post('/', bodyParser, (req, res, next) => {
+        new Chore(req.body).save()
+            .then(saved => res.send(saved))
             .catch(next);
     })
     // other crud operations
