@@ -6,6 +6,7 @@ const errorHandler = require('./error-handler');
 
 //require in routers
 const chores = require('./routes/chores');
+const users = require('./routes/users');
 
 
 
@@ -16,6 +17,7 @@ app.use(express.static('./public'));
 
 //add api routes here
 app.use('/api/chores', chores);
+app.use('/api/users', users);
 
 app.use(errorHandler);
 
