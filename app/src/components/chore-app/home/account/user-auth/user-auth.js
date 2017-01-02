@@ -1,13 +1,13 @@
-import template from './user.html';
+import template from 'user-auth.html';
 
 export default {
     template,
     controller,
     bindings: {
-        user: '='
+        success: '<'
     }
 };
 
 function controller() {
-    
+    this.action = 'signin';
 }
