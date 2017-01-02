@@ -3,20 +3,20 @@ import components from './components';
 import services from './services';
 
 //third party 
-// import animate from 'angular-animate';
+import animate from 'angular-animate';
 import defaultRoute from 'angular-ui-router-default';
 import uiRouter from 'angular-ui-router';
-// import resource from 'angular-resource';
-// import 'angular-ui-router/release/stateEvents';
+import resource from 'angular-resource';
+import 'angular-ui-router/release/stateEvents';
 
-// import dialog from 'ng-dialog';
-// import 'ng-dialog/css/ngDialog.css';
-// import 'ng-dialog/css/ngDialog-theme-default.css';
+import dialog from 'ng-dialog';
+import 'ng-dialog/css/ngDialog.css';
+import 'ng-dialog/css/ngDialog-theme-default.css';
 
 //route, http config and auth setup
-// import http from './http';
+import http from './http';
 import routes  from './routes';
-// import auth from './auth';
+import auth from './auth';
 import ngMaterial from 'angular-material';
 
 const app = angular.module('myApp', [
@@ -24,17 +24,17 @@ const app = angular.module('myApp', [
     services,
     uiRouter,
     defaultRoute,
-    ngMaterial 
-    // angular.module('ui.router.state.events').name,
-    // resource,
-    // dialog,
-    // animate
+    ngMaterial, 
+    angular.module('ui.router.state.events').name,
+    resource,
+    dialog,
+    animate
 ]);
 
-// app.config(http);
+app.config(http);
 app.config(routes);
-// app.run(auth);
+app.run(auth);
 
-const dev = 'https://pet-store-401.herokuapp.com/api';
+const dev = 'https://localhost:3000/api';
 
 app.value('apiUrl', dev);
