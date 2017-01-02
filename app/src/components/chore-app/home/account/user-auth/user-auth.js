@@ -1,4 +1,4 @@
-import template from 'user-auth.html';
+import template from './user-auth.html';
 
 export default {
     template,
