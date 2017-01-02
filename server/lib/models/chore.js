@@ -7,7 +7,11 @@ const schema = new Schema({
         required: true
     },
     target: Number,
-    description: String
+    description: String,
+    houseId: {
+        type: Schema.Types.ObjectId,
+        ref: 'House'
+    }
 });
 
 module.exports = mongoose.model('Chore', schema);
