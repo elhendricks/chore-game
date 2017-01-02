@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const errorHandler = require('./error-handler');
+const ensureAuth = require('./auth/ensureAuth')();
 // const cors = require('cors')();
 
 //require in routers
