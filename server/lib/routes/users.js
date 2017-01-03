@@ -29,8 +29,8 @@ router
             .catch(next);
     })
 
-    .put('/:id', bodyParser, (req, res, next) => {
-        User.findByIdAndUpdate(req.params.id, req.body)
+    .put('/', bodyParser, (req, res, next) => {
+        User.findByIdAndUpdate(req.user.id, req.body, {new: true})
         .then(updated => res.send(updated))
         .catch(next);
     });
