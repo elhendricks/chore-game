@@ -1,8 +1,13 @@
 <section ng-class="$ctrl.styles.navBar">
   <!--Materials thing didn't work-->
   <ul>
-    <li ui-sref="home">Home</li>
-    <li ui-sref="houseDashboard">User Dashboard</li>
-    <li ui-sref="userDashboard">House Dashboard</li>
+    <li><a ui-sref="home">Home</a></li>
+    <li><a ui-sref="userDashboard">User Dashboard</a></li>
+    <li><a ui-sref="houseDashboard">House Dashboard</a></li>
+      <ul ng-class="$ctrl.styles.signInUp">
+        <li><a ui-sref="signin">Sign In</a></li> | 
+        <li><a ui-sref="signup">Sign Up</a></li>
+        <li><a ui-sref="home">Log Out</a></li>
+      </ul>
   </ul>
 </section>

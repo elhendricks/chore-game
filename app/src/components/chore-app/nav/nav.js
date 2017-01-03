@@ -4,7 +4,10 @@ import styles from './nav.scss';
 export default {
     template,
     styles,
-    controller
+    controller,
+    bindings: {
+        authenticate: '<'
+    }
 };
 
 function controller() {
