@@ -2,9 +2,10 @@ const router = require('express').Router();
 const bodyParser = require('body-parser').json();
 const User  = require('../models/user');
 const token = require('../auth/token');
-const ensureAuth = require('../auth/ensure-auth')();
+const ensureAuth = require('../auth/ensureAuth')();
 
 // TODO: include routes in app.js
+// TODO: partial completion of above: added auth route in app.js - Drew
 
 router
   .post('/validate', ensureAuth, (req, res) => {

@@ -6,6 +6,7 @@ const ensureAuth = require('./auth/ensureAuth')();
 // const cors = require('cors')();
 
 //require in routers
+const auth = require('./routes/auth');
 const chores = require('./routes/chores');
 const users = require('./routes/users');
 
@@ -17,6 +18,7 @@ app.use(morgan('dev'));
 app.use(express.static('./public'));
 
 //add api routes here
+app.use('/api/auth', auth);
 app.use('/api/chores', chores);
 app.use('/api/users', users);
 
