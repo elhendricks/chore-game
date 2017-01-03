@@ -6,13 +6,13 @@
 		<label>Email:</label> {{$ctrl.user.email}} <br>
 		<label>Username:</label> {{$ctrl.user.username}}<br>
 		<label>Description:</label> {{$ctrl.user.description}} <br>
-		<label>House:</label> {{$ctrl.user.houseId}} <span ng-if="!$ctrl.user.name">Name Not Provided</span>
+		<label>House:</label> {{$ctrl.user.houseId}}
 		<button ng-if="!$ctrl.users[0].houseId" ng-click="$ctrl.toggle()" href="">Join a house</button>
 		<form ng-show="$ctrl.joinHouseForm">
 			<label>Name:</label>
 			<input type="text" placeholder="Enter House Name">
 			<label>Password:</label>
-			<input tyle="password">
+			<input tyle="password" placeholder="Enter House Password">
 		</form>
 	</div>
 	<div>
