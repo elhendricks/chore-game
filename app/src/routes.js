@@ -12,23 +12,35 @@ export default function routes($stateProvider, $urlRouterProvider) {
     
     $stateProvider.state({
         name: 'userDashboard',
-        url: '/user',
+        url: '/user/:id',
         component: 'userDashboard',
+        //TODO: refactor to pull id off of token.  
+        // resolve: {
+        //     id: ['$transition$', t => t.params().id],
+        //     user: ['id', 'userService', (id, User) => User.get({id})]
+        // },
         data: {
             public: true
-        },
-        // resolve: {
-        //     user: ['userService', '$transition$', (u, $t) => {
-        //         u.get($t.params().id);
-        //     }]
-        // }
+        }
     });
 
     $stateProvider.state({
         name: 'houseDashboard',
-        url: '/house',
-        component: 'houseDashboard'
+        url: '/house/:id',
+        component: 'houseDashboard',
+        resolve: {
+            id: ['$transition$', t => t.params().id],
+            house: ['id', 'houseService', (id, House) => House.get({id})]
+        },
+        data: {
+            public: true
+        }
     });
+    // .state({
+    //     name: 'houseDashboard.choreInput',
+    //     url: '/enterchore',
+    //     component: ''
+    // })
 
     $urlRouterProvider.otherwise('/');
 }
