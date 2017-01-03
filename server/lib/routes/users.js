@@ -35,8 +35,8 @@ router
         .catch(next);
     })
 
-    .delete('/:id', (req, res, next) => {
-        User.findByIdAndRemove(req.params.id)
+    .delete('/', (req, res, next) => {
+        User.findByIdAndRemove(req.user.id)
             .then(deleted => res.send(deleted))
             .catch(next);
     });
