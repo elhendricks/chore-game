@@ -1,7 +1,7 @@
 import angular from 'angular';
 import components from './components';
 import services from './services';
-
+import './scss/main.scss';
 //third party 
 import animate from 'angular-animate';
 import defaultRoute from 'angular-ui-router-default';
