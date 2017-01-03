@@ -5,6 +5,7 @@ const User = require('../models/user');
 
 router 
     .get('/', (req, res, next) => {
+        //test commenta
         if (req.query.all) {
             User.find()
                 .select('username description houseId')
