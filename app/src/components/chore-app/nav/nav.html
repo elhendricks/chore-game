@@ -5,11 +5,9 @@
     <li><a ui-sref="userDashboard(user._id)">User Dashboard</a></li>
     <li><a ui-sref="houseDashboard">House Dashboard</a></li>
       <ul ng-class="$ctrl.styles.signInUp">
-        <li><a ui-sref="userDashboard">Sign In</a></li> | 
+        <li><a ng-if="!$ctrl.isAuthenticated()" ui-sref="userDashboard">Sign In/Register</a></li> | 
         <!--TODO: Change signup route-->
-        <!--TODO: Hide/Show Signin/up or Logout on auth-->
-        <li><a ui-sref="user({id: user._id})">Sign Up</a></li>
-        <li><a ui-sref="home" ng-click="$ctrl.logout()">Log Out</a></li>
+        <li><a ng-if="$ctrl.isAuthenticated()" ui-sref="home" ng-click="$ctrl.logout()">Log Out</a></li>
       </ul>
   </ul>
 </section>
