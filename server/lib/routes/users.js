@@ -5,7 +5,7 @@ const User = require('../models/user');
 
 router 
     .get('/', (req, res, next) => {
-        if (req.query.all === true) {
+        if (req.query.all) {
             User.find()
                 .select('username description houseId')
                 .populate({
