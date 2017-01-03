@@ -7,7 +7,11 @@ export default {
         chores: '<'
     }
 };
+controller.$inject = ['userService'];
+function controller(userService) {
 
-function controller() {
-
+    this.enterChore = function(name, time) {
+      //TODO: PUT to user.choreUnits 
+      // On backend refactor to update chore units with new data. 
+    }
 }

@@ -2,7 +2,11 @@ import template from './house-dashboard.html';
 
 export default {
     template,
-    controller
+    controller, 
+    bindings: {
+        id: '<',
+        house: '<'
+    }
 };
 
 function controller() {

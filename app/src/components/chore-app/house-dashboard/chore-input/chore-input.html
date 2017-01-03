@@ -1,7 +1,16 @@
-<form ng-submit="">
+<form ng-submit="$ctrl.enterChore(name, time)">
     <h2>Enter Completed Chores</h2>
     <label>Chore Name:
-        <select ng-value="">--Select Chore--</select>
-        <select ng-repeat="chore in $ctrl.chores" ng-value="chore.name">{{chore.name}}</select>
+        <select ng-model="name">
+            <option ng-value="">--Select Chore--</option>
+            <option ng-repeat="chore in $ctrl.chores" ng-value="chore.name">{{chore.name}}</option>
+        </select>
     </label>
+    <label>Time Spent:
+        <select ng-model="time">
+            <option ng-value="">--Select Time--</option>
+            <option ng-repeat="obj in [{time: '0:15', units: 1}, {time: '0:30', units: 2}]" ng-value="obj.units">{{obj.time}}</option>
+        </select>
+    </label>
+    <button type="submit">Submit</button>
 </form>
