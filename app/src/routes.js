@@ -15,8 +15,9 @@ export default function routes($stateProvider, $urlRouterProvider) {
         url: '/user',
         component: 'userDashboard',
         resolve: {
-            id: ['$transition$', t => t.params().id],
-            user: ['id', 'userService', (id, User) => User.get({id})]
+            user: ['userService', '$transition$', user => {
+                return user.get();
+            }]
         }
     });
 
