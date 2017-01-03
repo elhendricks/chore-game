@@ -34,4 +34,18 @@ describe('house routes tests', () => {
       .catch(done);
   });
 
+
+  it.only('POSTs a house', done => {
+    request
+      .post('/api/houses')
+      .send(testHouse)
+      .then(res => {
+        const house = res.body;
+        testHouse.__v = 0;
+        testHouse_id = house._id;
+        done();
+      })
+      .catch(done);
+  });
+
 });
