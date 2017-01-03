@@ -12,6 +12,7 @@ controller.$inject = ['authService'];
 
 function controller(authService) {
     this.credentials = {
+        name: '',
         email: '',
         username: '',
         password: ''

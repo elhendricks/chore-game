@@ -1,4 +1,21 @@
 <section>
-  User Dashboard Things Go Here
-  <span>{{$ctrl.users}}</span>
+	<h1>Welcome, {{$ctrl.users[0].username}}</h1>
+	<div ng-class="$ctrl.styles.profile">
+		<h3>User Profile</h3>
+		<label>Username:</label> {{$ctrl.users[0].username}}
+		<br>
+		<label>House:</label> {{$ctrl.users[0].houseId}}
+		<button ng-if="!$ctrl.users[0].houseId" ng-click="$ctrl.toggle()" href="">Join a house</button>
+		<form ng-show="$ctrl.joinHouseForm">
+			<label>Name:</label>
+			<input type="text" placeholder="Enter House Name">
+			<label>Password:</label>
+			<input tyle="password">
+		</form>
+	</div>
+	<div>
+		<h3>Your User Stats</h3>
+		<label>Badges:</label> Badges go here
+		<p>Chart Goes Here</p>
+	</div>
 </section>

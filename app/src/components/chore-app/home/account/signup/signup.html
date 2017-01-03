@@ -1,6 +1,8 @@
 <section>
   <form name="auth" ng-submit="$ctrl.authenticate()">
     <div>
+      <label>name:</label>
+      <input type="text" ng-model="$ctrl.credentials.name" required>
       <label>email:</label>
       <input type="email" ng-model="$ctrl.credentials.email" required>
       <label>username:</label>
