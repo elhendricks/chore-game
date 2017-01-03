@@ -1,6 +1,5 @@
 <section>
-  <h2>Sign In</h2>
-  <form name="auth">
+  <form name="auth" ng-submit="$ctrl.authenticate()">
     <div>
       <label>username:</label>
       <input ng-model="$ctrl.credentials.username" required>

@@ -3,7 +3,7 @@ const app = express();
 const morgan = require('morgan');
 const errorHandler = require('./error-handler');
 const ensureAuth = require('./auth/ensureAuth')();
-// const cors = require('cors')();
+const cors = require('cors')();
 
 //require in routers
 const auth = require('./routes/auth');
@@ -15,7 +15,7 @@ const users = require('./routes/users');
 
 app.use(morgan('dev'));
 
-//app.use(cors);
+app.use(cors);
 app.use(express.static('./public'));
 
 //add api routes here
