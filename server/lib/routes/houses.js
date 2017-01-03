@@ -37,4 +37,10 @@ router
       .catch(next);
   })
 
+  .post('/', bodyParser, (req, res, next) => {
+    new House(req.body).save()
+      .then(saved => res.send(saved))
+      .catch(next);
+  })
+
   module.exports = router;
