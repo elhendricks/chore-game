@@ -24,6 +24,7 @@ describe('house routes tests', () => {
     description: "Test house best house!"
   };
 
+
   it('GETs all', done => {
     request
       .get('/api/houses')
@@ -34,15 +35,39 @@ describe('house routes tests', () => {
       .catch(done);
   });
 
-
-  it.only('POSTs a house', done => {
+  it('POSTs a house', done => {
     request
       .post('/api/houses')
       .send(testHouse)
       .then(res => {
         const house = res.body;
         testHouse.__v = 0;
-        testHouse_id = house._id;
+        testHouse._id = house._id;
+        testHouse.chores = [];
+        testHouse.users = [];
+        done();
+      })
+      .catch(done);
+  });
+
+  it('GETs by ID', done => {
+    request
+      .get(`/api/houses/${testHouse._id}`)
+      .then(res => {
+        const house = res.body;
+        assert.deepEqual(house, testHouse);
+        done();
+      })
+      .catch(done);
+  });
+
+  it('DELETEs a house', done => {
+    request
+      .delete(`/api/houses/${testHouse._id}`)
+      .then(res => {
+        res.body.chores = [];
+        res.body.users = [];
+        assert.deepEqual(res.body, testHouse);
         done();
       })
       .catch(done);
