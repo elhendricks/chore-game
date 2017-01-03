@@ -52,7 +52,6 @@ describe.only('chores routes tests', () => {
       .get(`/api/chores/${testChore._id}`)
       .then(res => {
         const chore = res.body;
-        console.log(chore);
         assert.deepEqual(chore, testChore);
         done();
       })
