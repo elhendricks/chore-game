@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 const connection  = require('../lib/setup-mongoose');
 const app = require('../lib/app');
 
-describe.only('chores routes tests', () => {
+describe('chores routes tests', () => {
 
   before(done => {
     const drop = () => connection.db.dropDatabase(done);
