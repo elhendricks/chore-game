@@ -10,7 +10,7 @@ describe('house routes tests', () => {
 
   before(done => {
     const drop = () => connection.db.dropDatabase(done);
-    if (connection.readState === 1) drop();
+    if (connection.readyState === 1) drop();
     else {
       connection.on('open', drop);
     }
@@ -25,7 +25,7 @@ describe('house routes tests', () => {
   };
 
 
-  it('GETs all', done => {
+  it('GETs all houses', done => {
     request
       .get('/api/houses')
       .then(res => {
@@ -50,7 +50,7 @@ describe('house routes tests', () => {
       .catch(done);
   });
 
-  it('GETs by ID', done => {
+  it('GETs house by ID', done => {
     request
       .get(`/api/houses/${testHouse._id}`)
       .then(res => {

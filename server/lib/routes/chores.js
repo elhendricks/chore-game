@@ -19,6 +19,12 @@ router
             .catch(next);
     })
 
+    .get('/:id', (req, res, next) => {
+        Chore.findById(req.params.id)
+            .then(chore => res.send(chore))
+            .catch(next);
+    })
+
     .post('/', bodyParser, (req, res, next) => {
         new Chore(req.body).save()
             .then(saved => res.send(saved))
