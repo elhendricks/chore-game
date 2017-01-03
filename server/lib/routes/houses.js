@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser').json();
 const House = require('../models/house');
 const Chore = require('../models/chore');
 const User = require('../models/user');
@@ -18,7 +18,7 @@ router
     Promise
       .all([
         House
-          .findById(houseId)
+          .findById(req.params.id)
           .lean(),
         Chore
           .find({ houseId })
@@ -26,7 +26,7 @@ router
           .lean(),
         User
           .find(({ houseId }))
-          .select('name')
+          .select('username')
           .lean()
       ])
       .then(([house, chores, users]) => {
@@ -34,5 +34,7 @@ router
         house.users = users;
         res.send(house);
       })
-      .send(next);
+      .catch(next);
   })
+
+  module.exports = router;

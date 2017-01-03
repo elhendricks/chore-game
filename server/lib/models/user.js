@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
 
-const schema = new Schema ({
+const schema = new Schema({
     username: {
         type: String,
         required: true
@@ -17,7 +17,7 @@ const schema = new Schema ({
     description: {
         type: String
     },
-    house: {
+    houseId: {
         type: Schema.Types.ObjectId,
         ref: 'House'
     },
