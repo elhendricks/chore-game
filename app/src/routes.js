@@ -12,7 +12,7 @@ export default function routes($stateProvider, $urlRouterProvider) {
     
     $stateProvider.state({
         name: 'userDashboard',
-        url: '/user/:id',
+        url: '/user',
         component: 'userDashboard',
 
         //TODO: refactor to pull id off of token.  
@@ -20,9 +20,9 @@ export default function routes($stateProvider, $urlRouterProvider) {
         //     id: ['$transition$', t => t.params().id],
         //     user: ['id', 'userService', (id, User) => User.get({id})]
         // },
-        data: {
-            public: true
-        }
+        // data: {
+        //     public: true
+        // }
     });
 
     $stateProvider.state({
