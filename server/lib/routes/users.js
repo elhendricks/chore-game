@@ -6,7 +6,7 @@ const User = require('../models/user');
 router
     .get('/', (req, res, next) => {
         User.find()
-            .select('username description house')
+            .select('username description houseId')
             .populate({
                 path: 'houseId',
                 select: 'name'
@@ -33,6 +33,13 @@ router
         User.findByIdAndUpdate(req.user.id, req.body, {new: true})
         .then(updated => res.send(updated))
         .catch(next);
+    })
+
+    .delete('/:id', (req, res, next) => {
+        User.findByIdAndRemove(req.params.id)
+            .then(deleted => res.send(deleted))
+            .catch(next);
     });
+
 
 module.exports = router;
