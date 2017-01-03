@@ -8,9 +8,9 @@ export default {
     }
 };
 
-controller.$inject = ['userService'];
+controller.$inject = ['authService'];
 
-function controller(userService) {
+function controller(authService) {
     this.credentials = {
         email: '',
         username: '',
@@ -18,7 +18,7 @@ function controller(userService) {
     };
 
     this.authenticate = () => {
-        return userService.signup(this.credentials)
+        return authService.signup(this.credentials)
         .then(() => {
             this.success();
         })

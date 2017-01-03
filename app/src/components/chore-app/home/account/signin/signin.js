@@ -8,16 +8,16 @@ export default {
     }
 };
 
-controller.$inject = ['userService'];
+controller.$inject = ['authService'];
 
-function controller(userService) {
+function controller(authService) {
     this.credentials = {
         username: '',
         password: ''
     };
 
     this.authenticate = () => {
-        return userService.signin(this.credentials)
+        return authService.signin(this.credentials)
             .then(() => {
                 this.success();
             })

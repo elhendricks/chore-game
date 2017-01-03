@@ -1,10 +1,10 @@
-auth.$inject = ['$rootScope', 'userService', 'ngDialog', '$state'];
+auth.$inject = ['$rootScope', 'authService', 'ngDialog', '$state'];
 
-export default function auth($rootScope, userService, ngDialog, $state) {
+export default function auth($rootScope, authService, ngDialog, $state) {
     $rootScope.$on('$stateChangeStart', (event, toState, toParams) => {
         //TODO: remove console.log after working
         console.log('toState.data', toState.data, 'data.public', toState.data.public);
-        if(!(toState.data && toState.data.public) && !userService.isAuthenticated()) {
+        if(!(toState.data && toState.data.public) && !authService.isAuthenticated()) {
             event.preventDefault();
             const dialog = ngDialog.open({
                 template: '<user-auth success="success"></user-auth>',
