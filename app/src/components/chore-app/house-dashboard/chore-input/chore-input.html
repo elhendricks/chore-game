@@ -1,0 +1,7 @@
+<form ng-submit="">
+    <h2>Enter Completed Chores</h2>
+    <label>Chore Name:
+        <select ng-value="">--Select Chore--</select>
+        <select ng-repeat="chore in $ctrl.chores" ng-value="chore.name">{{chore.name}}</select>
+    </label>
+</form>
