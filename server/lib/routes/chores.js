@@ -7,8 +7,6 @@ const Chore = require('../models/chore.js');
 const bodyParser = require('body-parser').json();
 
 router
-    //get all
-    // TODO: write query handler
     .get('/', (req, res, next) => {
         
         Chore.find()
@@ -26,7 +24,11 @@ router
             .then(saved => res.send(saved))
             .catch(next);
     })
-    // other crud operations
-    ;
+
+    .delete('/:id', (req, res, next) => {
+        Chore.findByIdAndRemove(req.params.id)
+            .then(deleted => res.send(deleted))
+            .catch(next);
+    })
 
 module.exports = router;
