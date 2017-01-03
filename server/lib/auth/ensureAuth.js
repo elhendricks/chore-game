@@ -6,7 +6,7 @@ module.exports = function getEnsureAuth() {
 
         if(!authHeader) {
             return next({
-                code: 400, 
+                code: 400,
                 error: 'Unauthorized, no token provided'
             });
         }
@@ -18,9 +18,9 @@ module.exports = function getEnsureAuth() {
             })
             .catch(() => {
                 return next({
-                    code: 403, 
+                    code: 403,
                     error: 'Unauthorized, invalid token'
                 });
             });
-    }
-}
+    };
+};
