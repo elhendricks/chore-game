@@ -5,7 +5,7 @@ export default {
     template,
     controller,
     bindings: {
-        user: '='
+        users: '='
     }
 };
 
@@ -13,8 +13,8 @@ controller.$inject = ['userService'];
 
 function controller(userService) {
     this.styles = styles;
-    this.users = userService.query({});
     this.joinHouseForm = false;
+    this.user = userService.get();
     this.toggle = function() {
         this.joinHouseForm = this.joinHouseForm ? false: true;
     };

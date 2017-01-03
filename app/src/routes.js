@@ -14,14 +14,10 @@ export default function routes($stateProvider, $urlRouterProvider) {
         name: 'userDashboard',
         url: '/user',
         component: 'userDashboard',
-        //TODO: refactor to pull id off of token.  
-        // resolve: {
-        //     id: ['$transition$', t => t.params().id],
-        //     user: ['id', 'userService', (id, User) => User.get({id})]
-        // },
-        // data: {
-        //     public: true
-        // }
+        resolve: {
+            id: ['$transition$', t => t.params().id],
+            user: ['id', 'userService', (id, User) => User.get({id})]
+        }
     });
 
     $stateProvider.state({
