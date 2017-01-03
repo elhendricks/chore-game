@@ -3,30 +3,30 @@ const router = express.Router();
 const bodyParser = require('body-parser').json();
 const User = require('../models/user');
 
-router
+router 
     .get('/', (req, res, next) => {
-        User.find()
-            .select('username description houseId')
-            .populate({
-                path: 'houseId',
-                select: 'name'
-            })
-            .lean()
-            .then(users => res.send(users))
-            .catch(next);
-    })
-
-    .get('/me', (req, res, next) => {
-        User.findById(req.user.id)
-            .lean()
-            .then(user => {
-                if(!user) throw {
-                    code: 404,
-                    error: `user ${req.user.id} does not exist`
-                };
-                res.send(user);
-            })
-            .catch(next);
+        if (req.query.all) {
+            User.find()
+                .select('username description houseId')
+                .populate({
+                    path: 'houseId',
+                    select: 'name'
+                })
+                .lean()
+                .then(users => res.send(users))
+                .catch(next);
+        } else {
+            User.findById(req.user.id)
+                .lean()
+                .then(user => {
+                    if(!user) throw {
+                        code: 404,
+                        error: `user ${req.user.id} does not exist`
+                    };
+                    res.send(user);
+                })
+                .catch(next);
+        }
     })
 
     .put('/', bodyParser, (req, res, next) => {
