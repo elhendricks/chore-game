@@ -37,4 +37,16 @@ router
       .catch(next);
   })
 
+  .post('/', bodyParser, (req, res, next) => {
+    new House(req.body).save()
+      .then(saved => res.send(saved))
+      .catch(next);
+  })
+
+  .delete('/:id', (req, res, next) => {
+    House.findByIdAndRemove(req.params.id)
+      .then(deleted => res.send(deleted))
+      .catch(next);
+  })
+
   module.exports = router;

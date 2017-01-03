@@ -8,7 +8,7 @@ router
         User.find()
             .select('username description house')
             .populate({
-                path: 'house',
+                path: 'houseId',
                 select: 'name'
             })
             .lean()
