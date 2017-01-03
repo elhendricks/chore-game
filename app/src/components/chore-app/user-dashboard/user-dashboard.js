@@ -5,6 +5,9 @@ export default {
     controller
 };
 
-function controller() {
-    
+controller.$inject = ['userService'];
+
+function controller(userService) {
+    this.users = userService.query({});
+
 }

@@ -35,6 +35,6 @@ app.config(http);
 app.config(routes);
 app.run(auth);
 
-const dev = 'https://localhost:3000/api';
+const dev = 'http://localhost:3000/api';
 
 app.value('apiUrl', dev);

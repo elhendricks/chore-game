@@ -5,20 +5,11 @@ export default function routes($stateProvider, $urlRouterProvider) {
         name: 'home',
         url: '/',
         component: 'welcome',
+        data: {
+            public: true
+        }
     });
-
-    $stateProvider.state({
-        name: 'signin',
-        url: '/signin',
-        component: 'signin'
-    });
-
-    $stateProvider.state({
-        name: 'signup',
-        url: '/signup',
-        component: 'signup'
-    });
-
+    
     $stateProvider.state({
         name: 'userDashboard',
         url: '/user',
