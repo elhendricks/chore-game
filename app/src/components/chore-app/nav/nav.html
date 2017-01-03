@@ -9,7 +9,7 @@
         <!--TODO: Change signup route-->
         <!--TODO: Hide/Show Signin/up or Logout on auth-->
         <li><a ui-sref="user({id: user._id})">Sign Up</a></li>
-        <li><a ui-sref="home">Log Out</a></li>
+        <li><a ui-sref="home" ng-click="$ctrl.logout()">Log Out</a></li>
       </ul>
   </ul>
 </section>

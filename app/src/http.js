@@ -14,7 +14,7 @@ function interceptor($window, tokenService, $state) {
             const token = tokenService.get();
 
             if(token) {
-                config.headers.Authorization = `Bearer ${token}`;
+                config.headers.Authorization = token;
             }
 
             return config;

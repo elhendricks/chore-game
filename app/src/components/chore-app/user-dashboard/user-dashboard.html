@@ -1,10 +1,12 @@
 <section>
-	<h1>Welcome, {{$ctrl.users[0].username}}</h1>
+	<h1>Welcome, {{$ctrl.user.username}}</h1>
 	<div ng-class="$ctrl.styles.profile">
 		<h3>User Profile</h3>
-		<label>Username:</label> {{$ctrl.users[0].username}}
-		<br>
-		<label>House:</label> {{$ctrl.users[0].houseId}}
+		<label>Name:</label> {{$ctrl.user.name}} <br>
+		<label>Email:</label> {{$ctrl.user.email}} <br>
+		<label>Username:</label> {{$ctrl.user.username}}<br>
+		<label>Description:</label> {{$ctrl.user.description}} <br>
+		<label>House:</label> {{$ctrl.user.houseId}} <span ng-if="!$ctrl.user.name">Name Not Provided</span>
 		<button ng-if="!$ctrl.users[0].houseId" ng-click="$ctrl.toggle()" href="">Join a house</button>
 		<form ng-show="$ctrl.joinHouseForm">
 			<label>Name:</label>
