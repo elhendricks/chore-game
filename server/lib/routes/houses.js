@@ -43,6 +43,8 @@ router
   })
 
   .post('/house', bodyParser, (req, res, next) => {
+
+      console.log(1, req.user);
       //TODO: Check if both name and code are provided
       const query = {};
       if (req.body.name && req.body.code) {
@@ -52,7 +54,7 @@ router
 
       House.find(query)
             .then(house => {
-                console.log(house);
+                console.log(2, house);
                 if (!house.length) {
                     throw {
                         code: 404,
@@ -61,8 +63,8 @@ router
                 }
                 if (house[0].code === req.body.code) {
                     console.log(req.user._id);
-                    User.findByIdAndUpdate(req.user._id, {
-                        houseId: house[0]._id})
+                    User.findByIdAndUpdate(req.user.id, {
+                        houseId: house[0]._id}, {new: true})
                             .then(user => res.send(user))
                                 .catch(next);
                 }
