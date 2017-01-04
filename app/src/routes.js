@@ -16,10 +16,13 @@ export default function routes($stateProvider, $urlRouterProvider) {
         component: 'userDashboard',
         resolve: {
 
-            user: ['userService', '$transition$', user => {
-                return user.get();
+            user: ['userService', User => {
+                return User.get().$promise;
             }],
+
+            //TODO: get this working
             house: ['user', 'houseService', '$transition$', (user, House) => {
+                console.log(user);
                 return House.get(user.houseId);
             }]
         }
@@ -27,14 +30,20 @@ export default function routes($stateProvider, $urlRouterProvider) {
 
     $stateProvider.state({
         name: 'houseDashboard',
-        url: '/house/:id',
+        url: '/house/',
         component: 'houseDashboard',
         resolve: {
-            id: ['$transition$', t => t.params().id],
-            house: ['id', 'houseService', (id, House) => House.get({id})],
             user: ['userService', User => {
-                return User.get();
+                return User.get().$promise;
             }],
+            id: ['user', user => {
+                console.log(user);
+                return user.houseId;
+            }],
+            house: ['id', 'houseService', (id, House) => {
+                console.log(id);
+                return House.get(id);
+            }]
         }//,
         // data: {
         //     public: true
