@@ -1,11 +1,12 @@
 <section>
-	<h1>Welcome, {{$ctrl.user.username}}</h1>
+	<h1>Welcome, {{$ctrl.user.name}}</h1>
 	<div ng-class="$ctrl.styles.profile">
 		<h3>User Profile</h3>
 		<label>Name:</label> {{$ctrl.user.name}} <br>
 		<label>Email:</label> {{$ctrl.user.email}} <br>
 		<label>Username:</label> {{$ctrl.user.username}}<br>
 		<label>Description:</label> {{$ctrl.user.description}} <br>
+		<create-house user="$ctrl.user" house="$ctrl.house"></create-house>
 		<join-house user="$ctrl.user" house="$ctrl.house"></join-house>
 	</div>
 	<div>
