@@ -5,7 +5,7 @@ module.exports = {
     sign(user) {
         return new Promise((resolve, reject) => {
             const payload = {
-                id: user._id,
+                id: user._id
                 // Add characteristics that would enable additional user privileges
             };
 
