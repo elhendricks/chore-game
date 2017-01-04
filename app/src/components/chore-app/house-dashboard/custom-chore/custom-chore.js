@@ -4,7 +4,8 @@ export default {
     template,
     controller,
     bindings: {
-        add: '<'
+        add: '<',
+        id: '<'
     }
 };
 
@@ -19,7 +20,8 @@ function controller() {
         this.add({
             name: this.name,
             target: this.target,
-            description: this.description
+            description: this.description,
+            houseId: this.id
         });
         this.clearFields();
     };
