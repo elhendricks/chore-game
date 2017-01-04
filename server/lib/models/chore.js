@@ -11,7 +11,8 @@ const schema = new Schema({
     houseId: {
         type: Schema.Types.ObjectId,
         ref: 'House'
-    }
+    },
+    completed: {}
 });
 
 module.exports = mongoose.model('Chore', schema);

@@ -31,6 +31,12 @@ router
             .catch(next);
     })
 
+    .put('/:id', bodyParser, (req, res, next) => {
+        Chore.findByIdAndUpdate(req.params.id, req.body, {new: true})
+            .then(updated => res.send(updated))
+            .catch(next);
+    })
+
     .delete('/:id', (req, res, next) => {
         Chore.findByIdAndRemove(req.params.id)
             .then(deleted => res.send(deleted))

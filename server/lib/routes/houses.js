@@ -77,9 +77,10 @@ router
             })
                 .catch(next);
   })
-
+// TODO remove this comment!  EH changed req.body.id to req.params.id
+// I think this was a typo. But, can be changed back
   .put('/:id', bodyParser, (req, res, next) => {
-      House.findByIdAndUpdate(req.body.id, {new: true})
+      House.findByIdAndUpdate(req.params.id, req.body, {new: true})
         .then(updated => res.send(updated))
         .catch(next);
   })
