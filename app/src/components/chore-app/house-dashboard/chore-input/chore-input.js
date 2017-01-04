@@ -10,9 +10,9 @@ export default {
     }
 };
 
-controller.$inject = ['userService'];
+controller.$inject = ['userService', 'choreService'];
 
-function controller(User) {
+function controller(User, Chore) {
 
     this.enterChore = function(name, time) {
  
@@ -37,5 +37,12 @@ function controller(User) {
         this.name = '';
         this.time = '';
 
+    };
+
+    this.add = chore => {
+        console.log();
+        Chore.add(chore)
+            .then(saved => this.chores.push(saved))
+            .catch(err => console.log(err));
     };
 }
