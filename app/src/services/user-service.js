@@ -1,5 +1,5 @@
 userService.$inject = ['$resource', 'apiUrl'];
 
 export default function userService($resource, apiUrl) {
-    return $resource(`${apiUrl}/users/`);
+    return $resource(`${apiUrl}/users/`, null, {'update': {method: 'PUT'}});
 }
