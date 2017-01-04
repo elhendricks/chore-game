@@ -7,14 +7,14 @@ const User = require('../models/user');
 
 router
   .get('/', (req, res, next) => {
-    //TYLER: we should break out into separate route because 
+    //TYLER: we should break out into separate route because
     //get / is getting all, and it makes sense to create a new
     //route to just get ONE object (the house)
     //TODO: Make separate route
 
       House.find()
-      .then(houses => res.send(houses))
-      .catch(next);
+        .then(houses => res.send(houses))
+        .catch(next);
   })
 
   .get('/:id', (req, res, next) => {
@@ -43,8 +43,8 @@ router
 
   .post('/', bodyParser, (req, res, next) => {
       new House(req.body).save()
-      .then(saved => res.send(saved))
-      .catch(next);
+        .then(saved => res.send(saved))
+        .catch(next);
   })
 
   .post('/house', bodyParser, (req, res, next) => {
@@ -78,10 +78,16 @@ router
                 .catch(next);
   })
 
+  .put('/:id', bodyParser, (req, res, next) => {
+      House.findByIdAndUpdate(req.body.id, {new: true})
+        .then(updated => res.send(updated))
+        .catch(next);
+  })
+
   .delete('/:id', (req, res, next) => {
       House.findByIdAndRemove(req.params.id)
-      .then(deleted => res.send(deleted))
-      .catch(next);
+        .then(deleted => res.send(deleted))
+        .catch(next);
   });
 
 module.exports = router;

@@ -3,7 +3,7 @@ const router = express.Router();
 const bodyParser = require('body-parser').json();
 const User = require('../models/user');
 
-router 
+router
     .get('/', (req, res, next) => {
         //test commenta
         if (req.query.all) {
@@ -32,8 +32,8 @@ router
 
     .put('/', bodyParser, (req, res, next) => {
         User.findByIdAndUpdate(req.user.id, req.body, {new: true})
-        .then(updated => res.send(updated))
-        .catch(next);
+            .then(updated => res.send(updated))
+            .catch(next);
     })
 
     .delete('/', (req, res, next) => {
