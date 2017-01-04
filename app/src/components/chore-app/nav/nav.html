@@ -1,8 +1,7 @@
 <section ng-class="$ctrl.styles.navBar">
-  <!--Materials thing didn't work-->
   <ul>
     <li><a ui-sref="home">Home</a></li>
-    <li><a ui-sref="userDashboard(user._id)">User Dashboard</a></li>
+    <li><a ui-sref="userDashboard">User Dashboard</a></li>
     <li><a ui-sref="houseDashboard">House Dashboard</a></li>
       <ul ng-class="$ctrl.styles.signInUp">
         <li><a ng-if="!$ctrl.isAuthenticated()" ui-sref="userDashboard">Sign In/Register</a></li> | 
