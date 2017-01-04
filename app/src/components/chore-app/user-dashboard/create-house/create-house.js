@@ -28,6 +28,8 @@ function controller(houseService, $state) {
             name: this.name, 
             code: this.code
         });
+  
+        houseService.join({name: this.name, code: this.code});
         this.reset();
         $state.go('houseDashboard');
     };
