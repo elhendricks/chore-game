@@ -34,6 +34,8 @@ function controller(User) {
         //update user's choreUnits
         User.update({choreUnits: this.userChores});
 
+        this.name = '';
+        this.time = '';
 
     };
 }
