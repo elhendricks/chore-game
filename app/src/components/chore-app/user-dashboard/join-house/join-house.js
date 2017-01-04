@@ -23,11 +23,8 @@ function controller(houseService) {
         this.code = '';
     };
 
-    
-
     this.joinHouse = () => {
-        var houseQuery = houseService.query({name: this.name, code: this.code});
-        console.log(houseQuery);
+        houseService.join({name: this.name, code: this.code});
         this.reset();
     };
 }
