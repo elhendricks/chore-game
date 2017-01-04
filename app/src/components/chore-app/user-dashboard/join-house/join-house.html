@@ -1,0 +1,11 @@
+<section>
+    <label>House:</label> {{$ctrl.house}}
+    <button ng-if="!$ctrl.user.houseId" ng-click="$ctrl.toggle()" href="">Join a house</button>
+    <form ng-show="$ctrl.joinHouseForm">
+        <label>Name:</label>
+        <input type="text" placeholder="Enter House Name" ng-model="$ctrl.name">
+        <label>Password:</label>
+        <input type="password" placeholder="Enter House Password" ng-model="$ctrl.code">
+        <button ng-click="$ctrl.joinHouse()">Join House</button>
+    </form>
+</section>

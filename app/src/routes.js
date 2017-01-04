@@ -15,7 +15,13 @@ export default function routes($stateProvider, $urlRouterProvider) {
         url: '/user',
         component: 'userDashboard',
         resolve: {
-            user: ['userService', User => User.get()]
+
+            user: ['userService', '$transition$', user => {
+                return user.get();
+            }],
+            house: ['user', 'houseService', '$transition$', (user, House) => {
+                return House.get(user.houseId);
+            }]
         }
     });
 
