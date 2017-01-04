@@ -7,11 +7,6 @@ const User = require('../models/user');
 
 router
   .get('/', (req, res, next) => {
-    //TYLER: we should break out into separate route because
-    //get / is getting all, and it makes sense to create a new
-    //route to just get ONE object (the house)
-    //TODO: Make separate route
-
       House.find()
         .then(houses => res.send(houses))
         .catch(next);
@@ -50,25 +45,28 @@ router
   .post('/house', bodyParser, (req, res, next) => {
       //TODO: Check if both name and code are provided
       const query = {};
-      if (req.body.name) {
+      if (req.body.name && req.body.code) {
           query.name = req.body.name;
+          query.code = req.body.code;
       }
 
       House.find(query)
             .then(house => {
+                console.log(house);
                 if (!house.length) {
                     throw {
                         code: 404,
                         error: `${req.body.name} not found.`
                     };
                 }
-                if (house.code === req.body.code) {
-                    User.findByIdAndUpdate(req.user.id, {
-                        houseId: house._id})
+                if (house[0].code === req.body.code) {
+                    console.log(req.user._id);
+                    User.findByIdAndUpdate(req.user._id, {
+                        houseId: house[0]._id})
                             .then(user => res.send(user))
                                 .catch(next);
                 }
-                else if (house.code !== req.body.code) {
+                else if (house[0].code !== req.body.code) {
                     throw {
                         code: 401,
                         error: 'Incorrect house password'
