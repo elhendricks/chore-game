@@ -11,23 +11,10 @@ router
     //get / is getting all, and it makes sense to create a new
     //route to just get ONE object (the house)
     //TODO: Make separate route
-      const query = {};
-      if (req.query.name && req.query.code) {
-          query.name = req.query.name;
-          query.code = req.query.code;
-          House.find(query)
-            .then(house => {
-                return User.findByIdAndUpdate(req.user.id, {
-                    houseId: house._id
-                })
-                .then(user => res.send(user.houseId))
-                .catch(next);
-            });
-      }
 
-      // House.find()
-      // .then(houses => res.send(houses))
-      // .catch(next);
+      House.find()
+      .then(houses => res.send(houses))
+      .catch(next);
   })
 
   .get('/:id', (req, res, next) => {
@@ -58,6 +45,37 @@ router
       new House(req.body).save()
       .then(saved => res.send(saved))
       .catch(next);
+  })
+
+  .post('/house', bodyParser, (req, res, next) => {
+      //TODO: Check if both name and code are provided
+      const query = {};
+      if (req.body.name) {
+          query.name = req.body.name;
+      }
+
+      House.find(query)
+            .then(house => {
+                if (!house.length) {
+                    throw {
+                        code: 404,
+                        error: `${req.body.name} not found.`
+                    };
+                }
+                if (house.code === req.body.code) {
+                    User.findByIdAndUpdate(req.user.id, {
+                        houseId: house._id})
+                            .then(user => res.send(user))
+                                .catch(next);
+                }
+                else if (house.code !== req.body.code) {
+                    throw {
+                        code: 401,
+                        error: 'Incorrect house password'
+                    };
+                }
+            })
+                .catch(next);
   })
 
   .delete('/:id', (req, res, next) => {
