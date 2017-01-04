@@ -9,10 +9,8 @@ export default {
     }
 };
 
+
+
 function controller() {
     this.styles = styles;
-    this.joinHouseForm = false;
-    this.toggle = function() {
-        this.joinHouseForm = this.joinHouseForm ? false: true;
-    };
 }
