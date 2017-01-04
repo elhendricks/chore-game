@@ -14,6 +14,6 @@ controller.$inject = ['authService'];
 
 function controller(authService) {
     this.styles = styles;
-
     this.logout = () => authService.logout();
+    this.isAuthenticated = () => authService.isAuthenticated();
 }
