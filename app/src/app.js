@@ -37,6 +37,11 @@ const app = angular.module('myApp', [
 app.config(http);
 app.config(routes);
 app.run(auth);
+app.config(function($mdThemingProvider) {
+    $mdThemingProvider.theme('default')
+        .primaryPalette('cyan')
+        .accentPalette('orange');
+}); 
 
 const dev = 'http://localhost:3000/api';
 
