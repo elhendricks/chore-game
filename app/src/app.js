@@ -18,6 +18,8 @@ import http from './http';
 import routes  from './routes';
 import auth from './auth';
 import ngMaterial from 'angular-material';
+import 'angular-material/angular-material.css';
+import ngAria from 'angular-aria';
 
 const app = angular.module('myApp', [
     components,
@@ -25,6 +27,7 @@ const app = angular.module('myApp', [
     uiRouter,
     defaultRoute,
     ngMaterial, 
+    ngAria,
     angular.module('ui.router.state.events').name,
     resource,
     dialog,
