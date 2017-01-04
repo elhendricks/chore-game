@@ -5,7 +5,8 @@ export default {
     controller, 
     bindings: {
         id: '<',
-        house: '<'
+        house: '<', 
+        user: '<'
     }
 };
 
