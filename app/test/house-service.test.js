@@ -55,5 +55,28 @@ describe('house service test', () => {
         $httpBackend.flush();
     });
 
+    it('deletes a house', done => {
+        const house = {
+            name: 'testHouse',
+            code: 'testCode',
+            id: '123'
+        };
+
+        const id = '123';
+
+        $httpBackend
+          .expectDELETE(`/api/houses/${id}`)
+          .respond(house);
+
+        houseService
+          .remove(id)
+          .then(deleted => {
+              assert.deepEqual(deleted, house);
+              done();
+          })
+          .catch(done);
+
+        $httpBackend.flush();
+    });
 
 });
