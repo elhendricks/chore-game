@@ -1,7 +1,5 @@
-
-
 <md-toolbar>
-  <div class="md-toolbar-tools">
+  <div class="md-toolbar-tools" ng-class="$ctrl.styles.navBar">
     <md-button ui-sref="home">Home</md-button>
     <md-button ui-sref="userDashboard">User Dashboard</md-button>
     <md-button ui-sref="houseDashboard">House Dashboard</md-button>
@@ -9,18 +7,3 @@
     <md-button ui-sref="home" ng-click="$ctrl.logout()" ng-if="$ctrl.isAuthenticated()">Log Out</md-button>
   </div>
 </md-toolbar>
-
-<!--TODO: Remove Dead Code-->
-
-<!--<section ng-class="$ctrl.styles.navBar">
-  <ul>
-    <li><a ui-sref="home">Home</a></li>
-    <li><a ui-sref="userDashboard">User Dashboard</a></li>
-    <li><a ui-sref="houseDashboard">House Dashboard</a></li>
-      <ul ng-class="$ctrl.styles.signInUp">
-        <li><a ng-if="!$ctrl.isAuthenticated()" ui-sref="userDashboard">Sign In/Register</a></li> | -->
-        <!--TODO: Change signup route-->
-        <!--<li><a ng-if="$ctrl.isAuthenticated()" ui-sref="home" ng-click="$ctrl.logout()">Log Out</a></li>
-      </ul>
-  </ul>
-</section>-->
