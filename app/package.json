@@ -1,5 +1,6 @@
 {
   "name": "app",
+  "version": "1.0.0",
   "main": "karma.conf.js",
   "directories": {
     "test": "karma start --single-run"
