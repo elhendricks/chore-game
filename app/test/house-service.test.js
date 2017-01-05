@@ -35,5 +35,25 @@ describe('house service test', () => {
         $httpBackend.flush();
     });
 
+    it('adds a house', done => {
+        const house = {
+            name: 'testHouse',
+            code: 'testCode'
+        };
+        $httpBackend
+          .expectPOST('/api/houses', house)
+          .respond(house);
+
+        houseService
+            .add(house)
+            .then(saved => {
+                assert.deepEqual(saved, house);
+                done();
+            })
+            .catch(done);
+
+        $httpBackend.flush();
+    });
+
 
 });
