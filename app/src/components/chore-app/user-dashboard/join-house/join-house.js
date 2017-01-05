@@ -12,12 +12,6 @@ export default {
 controller.$inject = ['houseService', '$state'];
 
 function controller(houseService, $state) {
-    this.joinHouseForm = false;
-
-    this.toggle = function() {
-        this.joinHouseForm = this.joinHouseForm ? false: true;
-    };
-
     this.reset = () => {
         this.name = '';
         this.code = '';

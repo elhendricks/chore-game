@@ -1,4 +1,5 @@
 import template from './signin.html';
+import styles from './signin.scss';
 
 export default {
     template,
@@ -11,6 +12,8 @@ export default {
 controller.$inject = ['authService'];
 
 function controller(authService) {
+    this.styles = styles;
+
     this.credentials = {
         username: '',
         password: ''
