@@ -1,13 +1,14 @@
 <section>
   <form name="auth" ng-submit="$ctrl.authenticate()">
-    <div>
+    <md-input-container>
       <label>username:</label>
       <input ng-model="$ctrl.credentials.username" required>
-    </div>
-    <div>
+    </md-input-container>
+    <md-input-container>
       <label>password:</label>
       <input type="password" ng-model="$ctrl.credentials.password" required>
-    </div>
-    <button type="submit">Sign In</button>
+    </md-input-container>
+    <br>
+    <md-button type="submit">Sign In</md-button>
   </form>
 </section>
