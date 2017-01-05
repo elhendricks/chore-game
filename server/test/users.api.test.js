@@ -3,10 +3,10 @@ const chaiHttp = require('chai-http');
 const assert = chai.assert;
 chai.use(chaiHttp);
 
-const connection = require('../lib/setup-mongoose');
+const connection = require('../lib/test-db-connection');
 const app = require('../lib/app');
 
-describe('user', () => {
+describe('user routes tests', () => {
 
     before(done => {
         const drop = () => connection.db.dropDatabase(done);
@@ -18,43 +18,45 @@ describe('user', () => {
 
     const request = chai.request(app);
 
-    const drew = {__v: 0, username: 'DrewStock' , password: 'password', name: 'Drew', email: 'test@some.org', description: 'This is a test user.'};
+    let token = '';
 
-    it('/GET all', done => {
+    let tester = { username: 'testUser', name: 'Test', password: 'pass1234'};
+
+    it('POSTs a user', done => {
+        request
+            .post('/api/auth/signup')
+            .send(tester)
+            .then(res => {
+                assert.ok(token = res.body.token);
+                done();
+            })
+            .catch(done);
+    });
+
+    it('/GETs a user', done => {
         request
         .get('/api/users')
+        .set('Authorization', `${token}`)
         .then(res => {
-            assert.deepEqual(res.body, []);
+            const user = res.body;
+            assert.deepEqual(user.username, tester.username);
+            assert.deepEqual(user.name, tester.name);
             done();
         })
         .catch(done);
     });
-
-    it('/POST', done => {
-        request
-        .post('/api/auth/signup')
-        .send(drew)
-        .then(res => {
-            const token = res.body;
-            assert.ok(token);
-            done();
-        })
-        .catch(done);
-    });
-
-    // TODO: This test needs some more work, but the route does work as expected when tested in Postman
-
-    // it('/GET by id', done => {
-    //     request
-    //     .get(`/api/users/${drew._id}`)
-    //     .then(res => {
-    //         const user = res.body;
-    //         assert.deepEqual(user, drew);
-    //         done();
-    //     })
-    //     .catch(done);
-    // });
 
     // TODO: Need to add tests for PUT and DELETE
+
+    // it('DELETEs a user', done => {
+    //     request
+    //         .delete(`/api/users/${tester._id}`)
+    //         .set('Authorization', `${token}`)
+    //         .then(res => {
+    //             console.log(res.body);
+    //             done();
+    //         })
+    //         .catch(done);
+    // });
 
 });
