@@ -51,23 +51,31 @@ router
             } else {
                 chore.completed['jan17'] ++;
             }
+
+            var {completed} = chore;
+            chore.completed = Object.create(null);
+            chore.completed = completed;
+
             return chore.save();
         }
 
-
-        console.log(req.body);
         var arr = req.body.map( id => {
             return Promise.all([
                 Chore.findById(id)
                     .then(chore => {
                         return updateCompleted(chore);
                     }),
-                UserChore.findById(id)
+                UserChore.find({choreId: id})
                     .then(chore => {
-                        if (!chore) {
-                            chore = new UserChore ({userId: req.user.id, choreId: id});
+                        console.log(chore);
+                        if (!chore.length) {
+                            console.log(1);
+                            return new UserChore ({userId: req.user.id, choreId: id}).save()
+                                .then(newChore => {
+                                    return newChore;
+                                });
                         }
-                        return updateCompleted(chore);
+                        return updateCompleted(chore[0]);
                     })
             ]);
         });
