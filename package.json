@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node server/server.js",
     "test": "cd app && npm i && npm test && cd ../server && npm i && npm test"
   },
   "dependencies": {
