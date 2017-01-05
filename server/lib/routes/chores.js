@@ -40,16 +40,19 @@ router
 
         function updateCompleted(chore) {
 
+            const date = moment().format('MMM YYYY');
+            console.log(date);
+
             //update chore.completed
 
             if (!chore.completed) {
-                chore.completed = {
-                    'jan17': 1
-                };
-            } else if (!chore.completed['jan17']) {
-                chore.completed['jan17'] = 1;
+                chore.completed = {};
+            } 
+            
+            if (!chore.completed[date]) {
+                chore.completed[date] = 1;
             } else {
-                chore.completed['jan17'] ++;
+                chore.completed[date] ++;
             }
 
             var {completed} = chore;
@@ -67,9 +70,7 @@ router
                     }),
                 UserChore.find({choreId: id})
                     .then(chore => {
-                        console.log(chore);
                         if (!chore.length) {
-                            console.log(1);
                             return new UserChore ({userId: req.user.id, choreId: id}).save()
                                 .then(newChore => {
                                     return newChore;
@@ -84,12 +85,6 @@ router
         Promise.all(arr)
             .then(() => res.send(successMessage))
             .catch(next);
-
-        // for each chore in req.body 
-        // UserChore.find
-        // Chore.find
-
-
     })
 
     .put('/:id', bodyParser, (req, res, next) => {
