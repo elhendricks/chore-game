@@ -4,6 +4,7 @@ const bodyParser = require('body-parser').json();
 const House = require('../models/house');
 const Chore = require('../models/chore');
 const User = require('../models/user');
+const UserChore = require('../models/user-chore');
 
 router
   .get('/', (req, res, next) => {
@@ -25,13 +26,27 @@ router
           .lean(),
           User
           .find(({ houseId }))
-          .select('username name choreUnits')
+          .select('username name description')
           .lean()
       ])
       .then(([house, chores, users]) => {
-          house.chores = chores;
-          house.users = users;
-          res.send(house);
+          let arr = users.map(item => {
+              return UserChore.find({userId: item._id})
+                    .select('completed')
+                    .lean()
+                    .then(chores => {
+                        return item.choreUnits = chores;
+                    });
+          });
+
+          Promise.all(arr)
+            .then(() => {
+                house.chores = chores;
+                house.users = users;
+                res.send(house);
+            });
+            
+
       })
       .catch(next);
   })
