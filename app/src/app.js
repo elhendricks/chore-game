@@ -8,6 +8,7 @@ import defaultRoute from 'angular-ui-router-default';
 import uiRouter from 'angular-ui-router';
 import resource from 'angular-resource';
 import 'angular-ui-router/release/stateEvents';
+import chartjs from 'angular-chart.js';
 
 import dialog from 'ng-dialog';
 import 'ng-dialog/css/ngDialog.css';
@@ -31,7 +32,8 @@ const app = angular.module('myApp', [
     angular.module('ui.router.state.events').name,
     resource,
     dialog,
-    animate
+    animate,
+    chartjs
 ]);
 
 app.config(http);
