@@ -1,5 +1,5 @@
 <section>
-    <label>House:</label> {{$ctrl.house.name}}
+    <label>House:</label> <a ui-sref="houseDashboard">{{$ctrl.house.name}}</a>
     <button ng-if="!$ctrl.user.houseId" ng-click="$ctrl.toggle()" href="">Join a house</button>
     <form ng-show="$ctrl.joinHouseForm">
         <label>Name:</label>
