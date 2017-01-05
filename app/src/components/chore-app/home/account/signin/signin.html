@@ -1,5 +1,5 @@
 <section>
-  <form name="auth" ng-submit="$ctrl.authenticate()">
+  <form name="auth" ng-submit="$ctrl.authenticate()" ng-class="$ctrl.styles.signinForm">
     <md-input-container>
       <label>username:</label>
       <input ng-model="$ctrl.credentials.username" required>
@@ -8,6 +8,6 @@
       <label>password:</label>
       <input type="password" ng-model="$ctrl.credentials.password" required>
     </md-input-container>
-    <div ng-class="$ctrl.styles.center"><md-button type="submit">Sign In</md-button></div>
+    <div class="center"><md-button type="submit">Sign In</md-button></div>
   </form>
 </section>

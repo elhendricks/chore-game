@@ -14,4 +14,15 @@ export default {
 
 function controller() {
     this.styles = styles;
+
+    this.joinHouseForm = false;
+    this.createHouseForm = false;
+
+    this.joinHouseToggle = function() {
+        this.joinHouseForm = this.joinHouseForm ? false: true;
+    };
+
+    this.createHouseToggle = function() {
+        this.createHouseForm = this.createHouseForm ? false: true;
+    };
 }

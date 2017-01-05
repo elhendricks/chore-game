@@ -1,5 +1,5 @@
 <section>
-  <form name="auth" ng-submit="$ctrl.authenticate()">
+  <form name="auth" ng-submit="$ctrl.authenticate()" ng-class="$ctrl.styles.signupForm">
     <md-input-container>
       <label>name:</label>
       <input type="text" ng-model="$ctrl.credentials.name" required>
@@ -20,7 +20,7 @@
       <label>description:</label>
       <input ng-model="$ctrl.credentials.description" placeholder="Tell us about yourself!">
     </md-input-container>
-    <div ng-class="$ctrl.styles.center"><md-button type="submit">Sign Up</md-button></div>
+    <div class="center"><md-button type="submit">Sign Up</md-button></div>
   </form>
   <div class="error" ng-if="$ctrl.error">{{$ctrl.error.reason}}</div>
 </section>
