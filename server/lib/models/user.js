@@ -27,7 +27,7 @@ const schema = new Schema({
     },
     // may not need this afterall -- made new model
     // TODO: make decision re above
-    choreUnits: {}
+    // choreUnits: []
 });
 
 schema.methods.generateHash = function(password) {

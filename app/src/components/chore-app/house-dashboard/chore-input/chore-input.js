@@ -19,44 +19,42 @@ function controller(User, Chore) {
 // TODO: Refactor to remove any keys that are falsey. 
 // TODO: Send only the truthy names 
 
-        var objToSend = {};
+        const arr = []
 
         for (var key in this.data) {
             if (this.data[key] == true) {
-                this.userChores = this.user.choreUnits;
-                    // //if the user has done the chore before, 
-                    // // add the units (time) to existing units, 
+                arr.push(key);
+                
+        //         this.userChores = this.user.choreUnits;
+        //             // //if the user has done the chore before, 
+        //             // // add the units (time) to existing units, 
 
-                //  build an object to send to user
-                if (this.userChores && this.userChores[key] && this.userChores[key]['Jan17']) {
-                    this.userChores[key]['Jan17'] ++;
-                }
-                // // else  (the user has never done that chore)
-                // // add it to user    Chores and updateUser
-                else if (this.userChores && this.chores[key]) {
-                    this.userChores[key]['Jan17'] = 1;
-                }
+        //         //  build an object to send to user
+        //         if (this.userChores && this.userChores[key] && this.userChores[key]['Jan17']) {
+        //             this.userChores[key]['Jan17'] ++;
+        //         }
+        //         // // else  (the user has never done that chore)
+        //         // // add it to user    Chores and updateUser
+        //         else if (this.userChores && this.chores[key]) {
+        //             this.userChores[key]['Jan17'] = 1;
+        //         }
 
-                else {
-                    if (!this.userChores) {this.userChores = {}}
-                    this.userChores[key] = {'Jan17': 1};
-                }
+        //         else {
+        //             if (!this.userChores) {this.userChores = {}}
+        //             this.userChores[key] = {'Jan17': 1};
+        //         }
 
-                //build an object to send to chore
+        //         //build an object to send to chore
 
-                objToSend[key] = this.data[key];
+        //         objToSend[key] = this.data[key];
 
-                // ideally would send: {sweepingId: true, testChoreId: true}
+        //         // ideally would send: {sweepingId: true, testChoreId: true}
                 
             }
             
-        }   
-
-        //TODO: handle cases where the user doesn't have any chores
-        
-            // //update user's choreUnits
-        User.update({choreUnits: this.userChores});
-        // Chore.updateMany(objToSend);
+        }
+        console.log(arr);
+        Chore.updateMany(arr);
     };
 
     this.add = chore => {

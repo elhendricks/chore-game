@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser').json();
 const User = require('../models/user');
+const UserChore = require('../models/user-chore');
 
 router
     .get('/', (req, res, next) => {
-        //test commenta
         if (req.query.all) {
             User.find()
                 .select('username description houseId')
@@ -17,23 +17,38 @@ router
                 .then(users => res.send(users))
                 .catch(next);
         } else {
-            User.findById(req.user.id)
-                .lean()
-                .then(user => {
-                    if(!user) throw {
-                        code: 404,
-                        error: `user ${req.user.id} does not exist`
-                    };
-                    res.send(user);
-                })
-                .catch(next);
+            const userId = req.user.id;
+
+            Promise.all([
+                User.findById(req.user.id)
+                    .lean()
+                    .then(user => {
+                        if(!user) throw {
+                            code: 404,
+                            error: `user ${req.user.id} does not exist`
+                        };
+                        return user;
+                    }),
+                UserChore.find({userId})
+                    .select('completed')
+                    .lean()
+                    .then(chores => {
+                        console.log(1);
+                        return chores;
+                    })
+            ])
+            .then(([user, chores]) => {
+                user.choreUnits = chores;
+                res.send(user);
+            })
+            .catch(next);
         }
     })
 
     .put('/', bodyParser, (req, res, next) => {
-            User.findByIdAndUpdate(req.user.id, req.body, {new: true})
-                .then(updated => res.send(updated))
-                .catch(next);
+        User.findByIdAndUpdate(req.user.id, req.body, {new: true})
+            .then(updated => res.send(updated))
+            .catch(next);
     })
 
     .delete('/', (req, res, next) => {

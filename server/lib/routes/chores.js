@@ -97,6 +97,6 @@ router
         Chore.findByIdAndRemove(req.params.id)
             .then(deleted => res.send(deleted))
             .catch(next);
-    })
+    });
 
 module.exports = router;
