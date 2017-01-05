@@ -1,0 +1,13 @@
+<section>
+  <div ng-class="$ctrl.styles.center">
+  <md-radio-group ng-model="sign">
+    <md-radio-button value="signin" ng-class="$ctrl.styles.radio">
+      Sign In &nbsp
+    </md-radio-button>
+    <md-radio-button value="signup" ng-class="$ctrl.styles.radio">
+      Sign Up
+    </md-radio-button>
+  </md-radio-group>
+  <signin ng-show="sign === 'signin'" success="$ctrl.success"></signin>
+  <signup ng-show="sign === 'signup'" success="$ctrl.success"></signup>
+</section>

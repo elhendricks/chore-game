@@ -1,0 +1,13 @@
+<section>
+  <form name="auth" ng-submit="$ctrl.authenticate()" ng-class="$ctrl.styles.signinForm">
+    <md-input-container>
+      <label>username:</label>
+      <input ng-model="$ctrl.credentials.username" required>
+    </md-input-container>
+    <md-input-container>
+      <label>password:</label>
+      <input type="password" ng-model="$ctrl.credentials.password" required>
+    </md-input-container>
+    <div class="center"><md-button type="submit">Sign In</md-button></div>
+  </form>
+</section>

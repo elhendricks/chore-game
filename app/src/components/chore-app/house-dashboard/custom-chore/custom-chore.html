@@ -1,0 +1,13 @@
+<form ng-submit="$ctrl.customChore()">
+  <h2>Add a Chore</h2>
+  <label>Chore Name:
+    <input ng-model="$ctrl.name" type="text">
+  </label>
+  <label>Times/Month:
+    <input ng-model="$ctrl.target" type="text">
+  </label>
+  <label>Description:
+    <input ng-model="$ctrl.description" type="text">
+  </label>
+  <button ng-click="$ctrl.addChore()">Submit</button>
+</form>

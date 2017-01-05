@@ -1,0 +1,25 @@
+<div layout="row" ng-class="$ctrl.styles.body">
+	<div flex="66" ng-class="$ctrl.styles.stats">
+		<h1>Welcome, {{$ctrl.user.name}}</h1>
+		<br>
+		<h3>Your User Stats</h3>
+		<label>Badges:</label> Badges go here
+		<p>Chart Goes Here</p>
+	</div>
+	<div ng-class="$ctrl.styles.profile" flex="33">
+		<h3>User Profile</h3>
+		<br>
+		<label><b>Name:</b></label> {{$ctrl.user.name}} <br>
+		<label><b>Email:</b></label> {{$ctrl.user.email}} <br>
+		<label><b>Username:</b></label> {{$ctrl.user.username}}<br>
+		<label><b>Description:</b></label> {{$ctrl.user.description}} <br>
+		<label><b>House:</b></label> <a ui-sref="houseDashboard">{{$ctrl.house.name}}</a>
+		<span ng-if="!$ctrl.user.houseId">None</span>
+
+		<md-button ng-if="!$ctrl.user.houseId" ng-click="$ctrl.joinHouseToggle()" href="" class="inline">Join a house</md-button>
+		<md-button ng-if="!$ctrl.user.houseId" ng-click="$ctrl.createHouseToggle()" href="" class="inline">Create a house</md-button>
+
+		<join-house ng-show="$ctrl.joinHouseForm" user="$ctrl.user" house="$ctrl.house" class="inline"></join-house>
+		<create-house ng-show="$ctrl.createHouseForm" user="$ctrl.user" house="$ctrl.house" class="inline"></create-house>
+	</div>
+</div>
