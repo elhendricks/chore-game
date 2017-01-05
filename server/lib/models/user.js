@@ -25,6 +25,8 @@ const schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'House'
     },
+    // may not need this afterall -- made new model
+    // TODO: make decision re above
     choreUnits: {}
 });
 

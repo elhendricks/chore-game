@@ -12,13 +12,14 @@ export default {
 };
 
 controller.$inject = ['userService', 'choreService'];
-
 function controller(User, Chore) {
 
     this.enterChore = function() {
+// TODO: Figure out how to get current date string and swap out 'Jan17' placeholders.
+// TODO: Refactor to remove any keys that are falsey. 
+// TODO: Send only the truthy names 
 
-        console.log(this.data);
-        console.log(this.chores);
+        var objToSend = {};
 
         for (var key in this.data) {
             if (this.data[key] == true) {
@@ -26,20 +27,27 @@ function controller(User, Chore) {
                     // //if the user has done the chore before, 
                     // // add the units (time) to existing units, 
 
+                //  build an object to send to user
                 if (this.userChores && this.userChores[key] && this.userChores[key]['Jan17']) {
                     this.userChores[key]['Jan17'] ++;
-                    console.log(1);
                 }
                 // // else  (the user has never done that chore)
                 // // add it to user    Chores and updateUser
                 else if (this.userChores && this.chores[key]) {
                     this.userChores[key]['Jan17'] = 1;
-                    console.log(2);
                 }
 
                 else {
+                    if (!this.userChores) {this.userChores = {}}
                     this.userChores[key] = {'Jan17': 1};
                 }
+
+                //build an object to send to chore
+
+                objToSend[key] = this.data[key];
+
+                // ideally would send: {sweepingId: true, testChoreId: true}
+                
             }
             
         }   
@@ -48,6 +56,7 @@ function controller(User, Chore) {
         
             // //update user's choreUnits
         User.update({choreUnits: this.userChores});
+        // Chore.updateMany(objToSend);
     };
 
     this.add = chore => {
