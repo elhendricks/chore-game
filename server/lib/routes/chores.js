@@ -8,7 +8,7 @@ const bodyParser = require('body-parser').json();
 
 router
     .get('/', (req, res, next) => {
-        
+
         Chore.find()
             .populate({
                 path: 'houseId',
@@ -35,6 +35,6 @@ router
         Chore.findByIdAndRemove(req.params.id)
             .then(deleted => res.send(deleted))
             .catch(next);
-    })
+    });
 
 module.exports = router;
