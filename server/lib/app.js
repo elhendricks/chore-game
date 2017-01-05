@@ -22,7 +22,7 @@ app.use(express.static('./public'));
 
 //add api routes here
 app.use('/api/auth', auth);
-app.use('/api/chores', chores);
+app.use('/api/chores', ensureAuth, chores);
 app.use('/api/houses', ensureAuth, houses);
 app.use('/api/users', ensureAuth, users);
 

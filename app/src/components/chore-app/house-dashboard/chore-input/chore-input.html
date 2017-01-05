@@ -1,7 +1,15 @@
 <md-content>
-    <form ng-submit="$ctrl.enterChore($ctrl.name, $ctrl.time)">
+    <form ng-submit="$ctrl.enterChore()">
         <h2>Enter Completed Chores</h2>
-        <md-input-container>
+            <md-checkbox ng-repeat="chore in $ctrl.chores" ng-model="$ctrl.data[chore._id]" aria-label="Checkbox 1">
+                {{chore.name}}
+            </md-checkbox>
+        <md-button type="submit">Submit</md-button>
+        {{$ctrl.data}}
+    </form>
+    <custom-chore id="$ctrl.id" add="$ctrl.add"></custom-chore>
+</md-content>
+        <!--<md-input-container>
             <label>Chore Name:</label>
             <md-select ng-model="$ctrl.name">
                 <md-option ng-value="">--Select Chore--</md-option>
@@ -15,9 +23,4 @@
                 <md-option ng-value="">--Select Time--</md-option>
                 <md-option ng-repeat="obj in [{time: '0:15', units: 1}, {time: '0:30', units: 2}]" ng-value="obj.units">{{obj.time}}</md-option>
             </md-select>
-        </md-input-container>
-        
-        <md-button type="submit">Submit</md-button>
-    </form>
-    <custom-chore id="$ctrl.id" add="$ctrl.add"></custom-chore>
-</md-content>
+        </md-input-container>-->
