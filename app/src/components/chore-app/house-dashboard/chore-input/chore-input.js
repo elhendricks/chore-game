@@ -15,29 +15,39 @@ controller.$inject = ['userService', 'choreService'];
 
 function controller(User, Chore) {
 
-    this.enterChore = function(name, time) {
- 
-        this.userChores = this.user.choreUnits;
-        //if the user has done the chore before, 
-        // add the units (time) to existing units, 
+    this.enterChore = function() {
 
-        if (this.userChores && this.userChores[name]) {
-            this.userChores[name] += time;
-        }
+        console.log(this.data);
+        console.log(this.chores);
 
-        // else  (the user has never done that chore)
-        // add it to userChores and updateUser
+        for (var key in this.data) {
+            if (this.data[key] == true) {
+                this.userChores = this.user.choreUnits;
+                    // //if the user has done the chore before, 
+                    // // add the units (time) to existing units, 
 
-        else if (this.userChores) {
-            this.userChores[name] = time;
-        }
+                if (this.userChores && this.userChores[key] && this.userChores[key]['Jan17']) {
+                    this.userChores[key]['Jan17'] ++;
+                    console.log(1);
+                }
+                // // else  (the user has never done that chore)
+                // // add it to user    Chores and updateUser
+                else if (this.userChores && this.chores[key]) {
+                    this.userChores[key]['Jan17'] = 1;
+                    console.log(2);
+                }
 
-        //update user's choreUnits
+                else {
+                    this.userChores[key] = {'Jan17': 1};
+                }
+            }
+            
+        }   
+
+        //TODO: handle cases where the user doesn't have any chores
+        
+            // //update user's choreUnits
         User.update({choreUnits: this.userChores});
-
-        this.name = '';
-        this.time = '';
-
     };
 
     this.add = chore => {

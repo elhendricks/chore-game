@@ -25,7 +25,7 @@ router
           .lean(),
           User
           .find(({ houseId }))
-          .select('username')
+          .select('username name choreUnits')
           .lean()
       ])
       .then(([house, chores, users]) => {

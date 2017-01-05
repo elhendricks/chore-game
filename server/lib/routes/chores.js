@@ -30,6 +30,9 @@ router
             .then(saved => res.send(saved))
             .catch(next);
     })
+    .put('/many', bodyParser, (req, res, next) => {
+        
+    })
 
     .put('/:id', bodyParser, (req, res, next) => {
         Chore.findByIdAndUpdate(req.params.id, req.body, {new: true})
