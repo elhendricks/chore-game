@@ -16,11 +16,11 @@
       <label>password:</label>
       <input type="password" ng-model="$ctrl.credentials.password" required>
     </md-input-container>
-    <md-input-container>
+    <md-input-container class="md-block">
       <label>description:</label>
-      <textarea ng-model="$ctrl.credentials.description" placeholder="Tell us about yourself!"></textarea>
+      <input ng-model="$ctrl.credentials.description" placeholder="Tell us about yourself!">
     </md-input-container>
-    <md-button type="submit">Sign Up</md-button>
+    <div ng-class="$ctrl.styles.center"><md-button type="submit">Sign Up</md-button></div>
   </form>
   <div class="error" ng-if="$ctrl.error">{{$ctrl.error.reason}}</div>
 </section>
