@@ -25,7 +25,9 @@ const schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'House'
     },
-    choreUnits: {}
+    // may not need this afterall -- made new model
+    // TODO: make decision re above
+    // choreUnits: []
 });
 
 schema.methods.generateHash = function(password) {
