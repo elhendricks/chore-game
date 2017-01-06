@@ -8,7 +8,8 @@ export default {
         chores: '<',
         user: '<', 
         updateUser: '<',
-        id: '<'
+        id: '<',
+        house: '<'
     }
 };
 
