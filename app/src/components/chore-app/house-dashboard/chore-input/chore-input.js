@@ -1,4 +1,5 @@
 import template from './chore-input.html';
+import styles from './chore-input.scss';
 
 export default {
     template, 
@@ -13,6 +14,7 @@ export default {
 
 controller.$inject = ['userService', 'choreService'];
 function controller(User, Chore) {
+    this.styles = styles;
 
     this.enterChore = function() {
 

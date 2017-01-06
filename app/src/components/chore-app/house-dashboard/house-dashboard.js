@@ -1,4 +1,5 @@
 import template from './house-dashboard.html';
+import styles from './house-dashboard.scss';
 
 export default {
     template,
@@ -11,5 +12,5 @@ export default {
 };
 
 function controller() {
-    
+    this.styles = styles;
 }

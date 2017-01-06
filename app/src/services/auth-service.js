@@ -4,7 +4,7 @@ export default function authService(token, $http, apiUrl) {
     const current = token.get();
     if(current) {
         $http
-      .post(`${apiUrl}/auth/verify`)
+      .post(`${apiUrl}/auth/validate`)
       .catch(() => token.remove());
     } 
 
