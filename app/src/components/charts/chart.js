@@ -1,4 +1,5 @@
 import template from './chart.html';
+import styles from './chart.scss';
 
 export default {
     template,
@@ -6,12 +7,15 @@ export default {
         house: '<'
     }, 
     controller
-}
+};
+
 controller.$inject = ['$state'];
 
 
 
 function controller($state) {
+
+    this.styles = styles;
 
     this.chartStyle = 'pie';
     this.selectedChart = 'all';
