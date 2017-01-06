@@ -26,14 +26,21 @@ function controller() {
         this.houseChoreNames = this.house.chores.map(chore => chore.name);
 
         this.renderHousePieChart = () => {
-            var sumTargetChart = new Chart('sumTargetChart', { //eslint-disable-line
+            var completed = this.sumHouseCompleted;
+            var remaining =  0;
 
+            if (this.sumChoreTargets - this.sumHouseCompleted >=  0) {
+                remaining = this.sumChoreTargets - this.sumHouseCompleted;
+            }
+
+            console.log()
+            var sumTargetChart = new Chart('sumTargetChart', { //eslint-disable-line
                 type: 'pie',
                 data: {
                     labels: ['Completed', 'Remaining'],
                     datasets: [{
                         label: 'Times Completed',
-                        data: [this.sumHouseCompleted, this.sumChoreTargets - this.sumHouseCompleted],
+                        data: [completed, remaining],
                         backgroundColor: [
                             '#B2EBF2',
                             '#B9F6CA',
