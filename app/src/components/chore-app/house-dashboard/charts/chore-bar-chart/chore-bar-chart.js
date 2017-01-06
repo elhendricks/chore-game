@@ -53,11 +53,8 @@ function controller() {
                 if (user.choreUnits.length) {
                     return user.choreUnits.reduce((acc, curr) => {
                         if (curr.completed && curr.completed['Jan 2017']) {
-                            console.log(1, acc);
-                            console.log(2, curr.completed['Jan 2017']);
                             acc += curr.completed['Jan 2017'];
                         } 
-                        console.log(3, acc);
                         return acc;
                     }, 0);
                 } else return 0;
@@ -65,12 +62,11 @@ function controller() {
             });
         }
 
-        console.log(getChoreAmounts(this.house.users));
         var userNames = this.house.users.map(user => user.name);
         this.houseChoreNames = this.house.chores.map(chore => chore.name);
 
         
-        var abc =  getChoreAmounts(this.house.users);
+        var chores =  getChoreAmounts(this.house.users);
         
         var choreBarChart = new Chart('choreBarChart', {
             type: 'bar',
@@ -78,7 +74,7 @@ function controller() {
                 labels: userNames,
                 datasets: [{
                     label: 'Times Completed',
-                    data: abc,
+                    data: chores,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
