@@ -22,7 +22,7 @@ router
           .lean(),
           Chore
           .find({ houseId })
-          .select('name description target')
+          .select('name description target completed')
           .lean(),
           User
           .find(({ houseId }))
