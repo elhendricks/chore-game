@@ -1,9 +1,9 @@
 <section ng-class="$ctrl.styles.houseDashBody">
 <h1>Chore Metrics for {{$ctrl.house.name}}</h1>
     
-    <md-content layout="row" >
+    <md-content layout="row">
         
-     <md-card layout="column" flex="20">
+     <md-card layout="column" flex="20" ng-class="$ctrl.styles.chartBody">
             <md-radio-group ng-model="$ctrl.chartStyle" ng-change="$ctrl.updateChart()">
 
                 <md-radio-button value="pie" class="md-accent">Pie</md-radio-button>
@@ -17,9 +17,7 @@
             </md-select>
         </md-input-container>
     </md-card>   
-    
-    
-    <ui-view flex="40"></ui-view>
+    <ui-view flex="80"></ui-view>
     </md-content>
 </section>
 
