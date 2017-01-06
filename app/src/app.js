@@ -43,6 +43,6 @@ app.config(function($mdThemingProvider) {
         .accentPalette('green');
 }); 
 
-const dev = process.env.API_URL || '/api';
+const dev = 'http://localhost:3000/api';
 
 app.value('apiUrl', dev);
