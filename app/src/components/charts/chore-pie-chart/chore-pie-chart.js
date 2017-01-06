@@ -32,7 +32,13 @@ function controller() {
         this.houseChoreNames = this.house.chores.map(chore => chore.name);
 
         this.renderChorePieChart = (id) => {
-            let array = [this.choreTargets[id], this.choreTargets[id] - this.houseCompleted[id]];
+
+            var completed = this.choreTargets[id];
+            var remaining = 0; 
+            if (this.choreTargets[id] - this.houseCompleted[id] >= 0) {
+                remaining = this.choreTargets[id] - this.houseCompleted[id]
+            }
+            let array = [completed, remaining];
             var chorePieChart = new Chart('chorePieChart', { //eslint-disable-line
                 type: 'pie',
                 data: {
