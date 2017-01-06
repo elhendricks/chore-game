@@ -32,7 +32,7 @@ router
       .then(([house, chores, users]) => {
           let arr = users.map(item => {
               return UserChore.find({userId: item._id})
-                    .select('completed')
+                    .select('completed choreId')
                     .lean()
                     .then(chores => {
                         return item.choreUnits = chores;
