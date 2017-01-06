@@ -1,6 +1,7 @@
 <md-content>
     <form ng-submit="$ctrl.enterChore()">
-        <h2>Enter Completed Chores</h2>
+        <h1>{{$ctrl.house.name}} Household</h1>
+        <h3>Enter Completed Chores</h3>
         <br>
             <md-checkbox ng-repeat="chore in $ctrl.chores" ng-model="$ctrl.data[chore._id]" aria-label="Checkbox 1" ng-class="$ctrl.styles.checkboxes">
                 {{chore.name}}
