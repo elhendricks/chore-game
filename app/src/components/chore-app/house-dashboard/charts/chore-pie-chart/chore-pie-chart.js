@@ -54,7 +54,7 @@ function controller() {
         console.log('completed', completed);
     
         function getChoreDifference(id) {
-            return [target[id], target[id] - completed[id]];
+            return [this.choreTargets[id], this.choreTargets[id] - completed[id]];
         }        
 
         this.houseChoreNames = this.house.chores.map(chore => chore.name);

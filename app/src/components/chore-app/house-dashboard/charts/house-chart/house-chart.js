@@ -45,7 +45,9 @@ function controller() {
         this.houseChoreNames = this.house.chores.map(chore => chore.name);
 
 
-        var sumTargetChart = new Chart('sumTargetChart', {
+
+        var sumTargetChart = new Chart('sumTargetChart', { //eslint-disable-line
+
             type: 'pie',
             data: {
                 labels: ['Completed', 'Remaining'],
@@ -65,7 +67,7 @@ function controller() {
             },
             options: {
                 scales: {
-                    
+                
                 }
             }
         });
