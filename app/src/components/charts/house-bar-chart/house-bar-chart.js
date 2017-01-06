@@ -4,7 +4,8 @@ import Chart from 'chart.js';
 export default {
     template,
     bindings: {
-        house: '<'
+        house: '<',
+        choreId: '<'
     }, 
     controller
 };
@@ -31,21 +32,16 @@ function controller() {
 
         this.renderHouseBarChart = (id) => {
             var data = getChoreAmounts(id, this.house.users);
-            var houseBarChart = new Chart('houseBarChart', {
+            console.log(data);
+            var houseBarChart = new Chart('houseBarChart', {//eslint-disable-line
                 type: 'bar',
                 data: {
                     labels: userNames,
                     datasets: [{
                         label: 'Times Completed',
                         data: data,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                        ],
-                        borderColor: [
-                            'rgba(255,99,132,1)',
-                            'rgba(54, 162, 235, 1)',
-                        ],
+                        backgroundColor: '#B2EBF2',
+                        borderColor: '#26C6DA',
                         borderWidth: 1
                     }]
                 },
@@ -57,7 +53,7 @@ function controller() {
             });
         };
 
-        this.renderHouseBarChart('586af7f66f0cc715bf785486');
+        this.renderHouseBarChart(this.choreId);
 
         
     };

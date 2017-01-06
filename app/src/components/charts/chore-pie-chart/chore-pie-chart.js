@@ -4,7 +4,8 @@ import Chart from 'chart.js';
 export default {
     template,
     bindings: {
-        house: '<'
+        house: '<',
+        choreId: '<'
     }, 
     controller
 };
@@ -32,7 +33,7 @@ function controller() {
 
         this.renderChorePieChart = (id) => {
             let array = [this.choreTargets[id], this.choreTargets[id] - this.houseCompleted[id]];
-            var chorePieChart = new Chart('chorePieChart', {
+            var chorePieChart = new Chart('chorePieChart', { //eslint-disable-line
                 type: 'pie',
                 data: {
                     labels: ['Completed', 'Remaining'],
@@ -40,12 +41,12 @@ function controller() {
                         label: 'Times Completed',
                         data: array,
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
+                            '#B2EBF2',
+                            '#B9F6CA',
                         ],
                         borderColor: [
-                            'rgba(255,99,132,1)',
-                            'rgba(54, 162, 235, 1)',
+                            '#26C6DA',
+                            '#00E676',
                         ],
                         borderWidth: 1
                     }]
@@ -58,7 +59,7 @@ function controller() {
             }); 
         };
 
-        this.renderChorePieChart('586e7f1e4a8e3350e5bc4ebd');
+        this.renderChorePieChart(this.choreId);
         
     };
     

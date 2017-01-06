@@ -62,29 +62,23 @@ function controller() {
             });
         }
 
-        var userNames = this.house.users.map(user => user.name);
+        var userNames = this.house.users.map(user => user.username);
         this.houseChoreNames = this.house.chores.map(chore => chore.name);
 
         
 
-        this.renderHousePieChart = () => {
+        this.renderChoreBarChart = () => {
             var chores =  getChoreAmounts(this.house.users);
         
-            var choreBarChart = new Chart('choreBarChart', {
+            var choreBarChart = new Chart('choreBarChart', { //eslint-disable-line
                 type: 'bar',
                 data: {
                     labels: userNames,
                     datasets: [{
                         label: 'Times Completed',
                         data: chores,
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                        ],
-                        borderColor: [
-                            'rgba(255,99,132,1)',
-                            'rgba(54, 162, 235, 1)',
-                        ],
+                        backgroundColor: '#B2EBF2',
+                        borderColor: '#26C6DA',
                         borderWidth: 1
                     }]
                 },
@@ -96,6 +90,8 @@ function controller() {
             });
 
         };
+
+        this.renderChoreBarChart();
         
     };
     

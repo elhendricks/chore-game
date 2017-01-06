@@ -35,12 +35,12 @@ function controller() {
                         label: 'Times Completed',
                         data: [this.sumHouseCompleted, this.sumChoreTargets - this.sumHouseCompleted],
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
+                            '#B2EBF2',
+                            '#B9F6CA',
                         ],
                         borderColor: [
-                            'rgba(255,99,132,1)',
-                            'rgba(54, 162, 235, 1)',
+                            '#26C6DA',
+                            '#00E676',
                         ],
                         borderWidth: 1
                     }]
