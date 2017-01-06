@@ -41,30 +41,30 @@ function controller() {
         this.houseChoreNames = this.house.chores.map(chore => chore.name);
 
 
-    var sumTargetChart = new Chart('sumTargetChart', {
-    type: 'pie',
-    data: {
-        labels: ['Completed', 'Remaining'],
-        datasets: [{
-            label: 'Times Completed',
-            data: [this.sumHouseCompleted, this.sumChoreTargets - this.sumHouseCompleted],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-            ],
-            borderWidth: 1
-        }]
-    },
-        options: {
-            scales: {
+        var sumTargetChart = new Chart('sumTargetChart', { //eslint-disable-line
+            type: 'pie',
+            data: {
+                labels: ['Completed', 'Remaining'],
+                datasets: [{
+                    label: 'Times Completed',
+                    data: [this.sumHouseCompleted, this.sumChoreTargets - this.sumHouseCompleted],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
                 
+                }
             }
-        }
-    });
+        });
 
 
     };
