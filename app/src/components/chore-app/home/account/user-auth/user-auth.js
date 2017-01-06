@@ -1,4 +1,5 @@
 import template from './user-auth.html';
+import styles from './user-auth.scss';
 
 export default {
     template,
@@ -9,5 +10,5 @@ export default {
 };
 
 function controller() {
-    this.action = 'signin';
+    this.styles = styles;
 }

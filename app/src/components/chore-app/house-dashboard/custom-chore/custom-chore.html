@@ -1,13 +1,17 @@
 <form ng-submit="$ctrl.customChore()">
-  <h2>Create a Custom Chore</h2>
-  <label>Chore Name:
+  <h2>Add a Chore</h2>
+  <md-input-container class="md-block">
+  <label>Chore Name:</label>
     <input ng-model="$ctrl.name" type="text">
-  </label>
-  <label>Target Time:
+  </md-input-container>
+  <md-input-container class="md-block">
+  <label>Times/Month: </label>
     <input ng-model="$ctrl.target" type="text">
-  </label>
-  <label>Description:
+  </md-input-container>
+  <md-input-container class="md-block">
+  <label>Description:</label>
     <input ng-model="$ctrl.description" type="text">
-  </label>
-  <button ng-click="$ctrl.addChore()">Submit</button>
+  </md-input-container>
+  <br>
+  <md-button ng-click="$ctrl.addChore()">Submit</md-button>
 </form>

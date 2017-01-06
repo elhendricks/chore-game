@@ -40,7 +40,7 @@ app.run(auth);
 app.config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')
         .primaryPalette('cyan')
-        .accentPalette('orange');
+        .accentPalette('green');
 }); 
 
 const dev = 'http://localhost:3000/api';

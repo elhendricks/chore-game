@@ -1,4 +1,21 @@
+:local(.body) {
+    height:96%;
+    margin:0 auto;
+    line-height:25px;
+}
+
 :local(.profile) {
-    background-color: #777;
-    color: #FFF;
+    background-color: #cceaed;
+    padding:2% 2% 0 2%;
+    height:100%;
+
+    a {
+        color: #00838F;
+        font-weight:600;
+        text-decoration:none;
+    }
+}
+
+:local(.stats) {
+    padding:2% 2% 0 2%;
 }

@@ -4,12 +4,15 @@ export default {
     template,
     controller,
     bindings: {
-        add: '<',
+        chores: '<',
+        user: '<', 
+        updateUser: '<',
         id: '<'
     }
 };
 
 function controller() {
+
     this.clearFields = () => {
         this.name = '';
         this.target = '';

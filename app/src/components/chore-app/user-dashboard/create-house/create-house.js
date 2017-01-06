@@ -12,11 +12,6 @@ export default {
 controller.$inject = ['houseService', '$state'];
 
 function controller(houseService, $state) {
-    this.createHouseForm = false;
-
-    this.toggle = function() {
-        this.createHouseForm = this.createHouseForm ? false: true;
-    };
 
     this.reset = () => {
         this.name = '';
