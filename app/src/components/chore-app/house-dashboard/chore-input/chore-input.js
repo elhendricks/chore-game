@@ -28,5 +28,6 @@ function controller(User, Chore) {
         }
         console.log(arr);
         Chore.updateMany(arr);
+        this.data = [];
     };
 }
