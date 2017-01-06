@@ -20,7 +20,7 @@ function controller(choreService) {
 
     this.add = chore => {
         choreService.add(chore)
-            .then(saved => this.chores.push(saved))
+            .then(saved => this.house.chores.push(saved))
             .catch(err => console.log(err));
     };
 }

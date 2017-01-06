@@ -13,12 +13,20 @@
     color:#FFF;
 }
 
-:local(.welcomeBody) {
+:local(.aboutBody) {
     margin: 0 auto;
     width: 90%;
-    text-align: justify;;
+    text-align: justify;
     font-size: 1.25em;
-    line-height: 150%;
-    padding:1.5%;
+    line-height: 125%;
+    padding:1%;
     box-shadow: 0 -5px 5px -5px #999;
+}
+
+:local(a) {
+    display: block;
+}
+
+:local(p) {
+    margin: 10px 0;
 }

@@ -9,7 +9,16 @@ export default function routes($stateProvider, $urlRouterProvider) {
             public: true
         }
     });
-    
+
+    $stateProvider.state({
+        name: 'about',
+        url: '/about',
+        component: 'about',
+        data: {
+            public: true
+        }
+    });
+
     $stateProvider.state({
         name: 'userDashboard',
         url: '/user',
