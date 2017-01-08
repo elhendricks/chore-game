@@ -38,10 +38,10 @@ router
     .put('/many', bodyParser, (req, res, next) => {
         // assume we get our data as an array of chore IDs
 
+        const date = moment().format('MMM YYYY');
+        
         function updateCompleted(chore) {
 
-            const date = moment().format('MMM YYYY');
-            console.log(date);
 
             //update chore.completed
 
@@ -68,10 +68,12 @@ router
                     .then(chore => {
                         return updateCompleted(chore);
                     }),
-                UserChore.find({choreId: id})
+                UserChore.find({choreId: id, userId: req.user.id})
                     .then(chore => {
                         if (!chore.length) {
-                            return new UserChore ({userId: req.user.id, choreId: id}).save()
+                            var data = {userId: req.user.id, choreId: id, completed: {}};
+                            data.completed[date] = 1;
+                            return new UserChore (data).save()
                                 .then(newChore => {
                                     return newChore;
                                 });
@@ -80,10 +82,8 @@ router
                     })
             ]);
         });
-
-        var successMessage = {'success': true};
         Promise.all(arr)
-            .then(() => res.send(successMessage))
+            .then(() => res.send(arr))
             .catch(next);
     })
 

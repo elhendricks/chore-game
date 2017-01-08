@@ -49,10 +49,7 @@ export default function routes($stateProvider, $urlRouterProvider) {
             house: ['id', 'houseService', (id, House) => {
                 return House.get(id);
             }]
-        }//,
-        // data: {
-        //     public: true
-        // }
+        }
     });
 
     $stateProvider.state({
@@ -103,12 +100,6 @@ export default function routes($stateProvider, $urlRouterProvider) {
         },
         component: 'houseBarChart',
     });
-
-    // .state({
-    //     name: 'houseDashboard.choreInput',
-    //     url: '/enterchore',
-    //     component: ''
-    // })
 
     $urlRouterProvider.otherwise('/');
 }
