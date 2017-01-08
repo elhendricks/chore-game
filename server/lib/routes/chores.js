@@ -30,6 +30,53 @@ router
             .catch(next);
     })
 
+    .post('/house', bodyParser, (req, res, next) => {
+        const date = req.body.date || moment().format('MMM YYYY');
+        const houseChores = req.body.chores;
+        Promise.all(houseChores.map(choreId => {
+            return Promise.all([
+                Chore.findById(choreId),
+                UserChore.find({choreId})
+                    .select('userId completed')
+                    .lean()
+
+            ]);
+        }))
+        .then(chores => {
+
+            var array = chores.reduce((acc, curr) => {
+
+
+                var chore = curr[0];
+                var users = curr[1];
+                var obj = {};
+
+                obj.name = chore.name;
+                obj.target = chore.target;
+                if (chore.completed) {
+                    var completed = chore.completed[date];
+                }
+                obj.currentCompleted = completed || 0;                 
+
+                obj.userCompleted = users.reduce((init, user) => { 
+                    if (user.completed) {
+                        var tally = user.completed[date];
+                    }
+                    init[user.userId] = tally || 0;
+                    return init;
+                }, {});
+
+                acc[chore._id] = obj;
+                return acc;
+
+            }, {});
+
+            res.send(array);
+        })
+        .catch(next);
+        
+    })
+
     .post('/', bodyParser, (req, res, next) => {
         new Chore(req.body).save()
             .then(saved => res.send(saved))

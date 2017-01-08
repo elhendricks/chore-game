@@ -67,6 +67,10 @@ export default function routes($stateProvider, $urlRouterProvider) {
             }],
             house: ['id', 'houseService', (id, House) => {
                 return House.get(id);
+            }],
+            chores: ['house', 'choreService', (house, choreService) => {
+                var choreArr = house.chores.map(chore => chore._id);
+                return choreService.getHouseChores({date: 'Jan 2017', chores: choreArr});
             }]
         }
     });
