@@ -4,7 +4,8 @@ import styles from './chart.scss';
 export default {
     template,
     bindings: {
-        house: '<'
+        house: '<',
+        chores: '<'
     }, 
     controller
 };
