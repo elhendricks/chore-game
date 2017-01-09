@@ -15,7 +15,6 @@ function controller() {
     this.$onInit = () => {
 
         this.choreTargets = this.house.chores.reduce((acc, chore) => {
-            console.log(acc);
             var id = chore._id;
             acc[id] = chore.target || 0;
             return acc;
@@ -25,7 +24,6 @@ function controller() {
             if (!chore.completed) return acc;
             var id = chore._id;
             acc[id] = chore.completed['Jan 2017'] || 0;
-            console.log(acc);
             return acc;
         }, {});
 
@@ -33,7 +31,7 @@ function controller() {
 
         this.renderChorePieChart = (id) => {
 
-            var completed = this.choreTargets[id];
+            var completed = this.houseCompleted[id];
             var remaining = 0; 
             if (this.choreTargets[id] - this.houseCompleted[id] >= 0) {
                 remaining = this.choreTargets[id] - this.houseCompleted[id]

@@ -1,4 +1,11 @@
 
-<md-card> 
-    <canvas id="sumTargetChart" width="400" height="400"></canvas>
+<md-card>
+    <md-card-title class="md-primary">
+        <span ng-if="$ctrl.chores[$ctrl.choreId]">{{$ctrl.chores[$ctrl.choreId].name}}</span>
+        <span ng-if="!$ctrl.chores[$ctrl.choreId]">All Chores</span>
+    </md-card-title>
+    <div id="chart-placeholder">
+        <canvas id="currentChart" width="400" height="400"></canvas>
+    </div>
+    
 </md-card>

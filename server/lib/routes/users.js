@@ -30,10 +30,9 @@ router
                         return user;
                     }),
                 UserChore.find({userId})
-                    .select('completed')
+                    .select('completed choreId')    
                     .lean()
                     .then(chores => {
-                        console.log(1);
                         return chores;
                     })
             ])
