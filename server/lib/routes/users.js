@@ -33,7 +33,6 @@ router
                     .select('completed choreId')    
                     .lean()
                     .then(chores => {
-                        console.log(1);
                         return chores;
                     })
             ])
