@@ -5,15 +5,20 @@ export default {
     template,
     bindings: {
         house: '<',
-        chores: '<'
+        chores: '<',
+        choreId: '<',
+        style: '<'
     }, 
     controller
 };
 
-function controller() {
+controller.$inject = ['$element'];
+
+function controller($element) {
 
     this.$onInit = () => {
 
+        console.log(this.choreId);
         this.sumTargets = 0;
         this.sumCompleted = 0;
         for (var key in this.chores) {
@@ -44,42 +49,52 @@ function controller() {
             return sum;
         };
 
-        var configPie = (id) => {            
+        var configPie = (id) => {
+            var labels, data, title;            
             var pieConfig;
             if (id === 'all') {
-                pieConfig = targetCompletedDelta(this.sumTargets, this.sumCompleted);           
+                pieConfig = targetCompletedDelta(this.sumTargets, this.sumCompleted); 
+                pieConfig.title = `All Chores for ${this.house.name}`;          
             } else {  
                 let currentChore = this.chores[id];
-                pieConfig = targetCompletedDelta(currentChore.target, currentChore.currentCompleted);        
+                pieConfig = targetCompletedDelta(currentChore.target, currentChore.currentCompleted); 
+                pieConfig.title = `${this.chores[id].name} for ${this.house.name}`;       
             }
+ 
             return pieConfig;
         };
 
         var configBar = (id) => {
-            var labels = [], data = [];
+            var labels = [], data = [], title;
             if (id === 'all') {
                 this.house.users.forEach( user => {
                     labels.push(user.username);
                     data.push(sumChoreByUser(user._id) || 0);
+                    title = `All Chores for ${this.house.name}`;
                 });
             } else {
                 let currentChore = this.chores[id];
                 this.house.users.forEach( user => {
                     labels.push(user.username);
                     data.push(currentChore.userCompleted[user._id] || 0);
+                    title = `${this.chores[id].name} for ${this.house.name}`;
                 });
             }
-            return {labels, data};
+            return {labels, data, title};
         };
         
         this.renderChart = (id, style) => {
+            // This is a hacky work around.  Making new charts was just drawing on the same canvas.
+            $element.find('canvas').after('<canvas id="currentChart" width="400" height="400"></canvas>').remove();
+
             var labels;
             var data;
+            var title;
 
-            if (style === 'pie') ({labels, data} = configPie(id));
-            if (style === 'bar') ({labels, data} = configBar(id));
+            if (style === 'pie') ({labels, data, title} = configPie(id));
+            if (style === 'bar') ({labels, data, title} = configBar(id));
 
-            new Chart('currentChart', {
+            var chart = new Chart('currentChart', {
                 type: style,
                 data: {
                     labels: labels,
@@ -98,17 +113,22 @@ function controller() {
                     }]
                 },
                 options: {
-                    scales: {
-                    
-                    }
+                    layout: {
+                        padding: 25
+                    },
                 }
             });
         };
 
-        this.renderChart('all', 'pie');
+        this.renderChart(this.choreId, this.style);
        
     };
 
-    
+    this.uiOnParamsChanged = params => {
+        if (params.choreId) this.choreId = params.choreId;
+        if (params.style) this.style = params.style;
+        return this.renderChart(this.choreId, this.style);
+    };
+
     
 }

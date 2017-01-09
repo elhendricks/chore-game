@@ -19,10 +19,14 @@
                 <md-option ng-repeat="chore in $ctrl.house.chores track by $index" ng-value="chore._id">{{chore.name}}</md-option>
             </md-select>
         </md-input-container>
-        <p>{{$ctrl.selectedChore}}</p>
-        <p>{{$ctrl.chores}}</p>
     </md-card>  
-    <ui-view flex="80"></ui-view>
+    <ui-view flex="40">
+        <md-card layout="row">
+            <md-card-title>
+                Use the Menu on the Left to Select a Chart
+            </md-card-title>
+        </md-card>
+    </ui-view>
 
     </md-content>
 </section>
