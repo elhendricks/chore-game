@@ -32,7 +32,6 @@ function controller() {
 
         this.renderHouseBarChart = (id) => {
             var data = getChoreAmounts(id, this.house.users);
-            console.log(data);
             var houseBarChart = new Chart('houseBarChart', {//eslint-disable-line
                 type: 'bar',
                 data: {

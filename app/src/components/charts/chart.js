@@ -16,32 +16,17 @@ controller.$inject = ['$state'];
 
 function controller($state) {
 
+    var today = new Date();
+
+    this.selectedMonth = today.getMonth();
+    this.selectedYear = today.getFullYear();
+
     this.styles = styles;
 
     this.chartStyle = 'pie';
     this.selectedChart = 'all';
 
     this.updateChart = function() {
-
-        $state.go('charts.detail', {choreId: this.selectedChore, style: this.chartStyle});
-
-    //     if (this.chartStyle === 'pie') {
-    //         if (this.selectedChore === 'all') {
-    //             $state.go('charts.allpie');
-    //         } else {
-    //             $state.go('charts.pie', {choreId: this.selectedChore});
-    //         }
-    //     } 
-
-    //     if (this.chartStyle === 'bar') {
-    //         if (this.selectedChore === 'all') {
-    //             $state.go('charts.allbar');
-    //         } else {
-    //             $state.go('charts.bar', {choreId: this.selectedChore});
-    //         }
-    //     }
-        
+        $state.go('charts.detail', {choreId: this.selectedChore, style: this.chartStyle, month: this.selectedMonth, year: this.selectedYear});
     };
-
-    // this.updateChart();
 }

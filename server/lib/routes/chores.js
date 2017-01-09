@@ -3,8 +3,6 @@ const router = express.Router();
 //import model(s)
 const Chore = require('../models/chore');
 const UserChore = require('../models/user-chore');
-const User = require('../models/user');
-const ensureAuth = require('../auth/ensureAuth');
 
 //middleware
 const bodyParser = require('body-parser').json();
@@ -31,7 +29,7 @@ router
     })
 
     .post('/house', bodyParser, (req, res, next) => {
-        const date = req.body.date || moment().format('MMM YYYY');
+        const date = moment(req.body.date).format('MMM YYYY');
         const houseChores = req.body.chores;
         Promise.all(houseChores.map(choreId => {
             return Promise.all([

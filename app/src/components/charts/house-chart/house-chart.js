@@ -7,18 +7,19 @@ export default {
         house: '<',
         chores: '<',
         choreId: '<',
-        style: '<'
+        style: '<',
+        year: '<',
+        month: '<'
     }, 
     controller
 };
 
-controller.$inject = ['$element'];
+controller.$inject = ['$element', 'choreService'];
 
-function controller($element) {
+function controller($element, choreService) {
+
 
     this.$onInit = () => {
-
-        console.log(this.choreId);
         this.sumTargets = 0;
         this.sumCompleted = 0;
         for (var key in this.chores) {
@@ -41,7 +42,6 @@ function controller($element) {
         var sumChoreByUser = (userId) => {
             var sum = 0;
             for (let chore in this.chores) {
-                console.log(this.chores[chore]);
                 if (this.chores[chore].userCompleted && this.chores[chore].userCompleted[userId]) {
                     sum += this.chores[chore].userCompleted[userId];
                 }
@@ -123,12 +123,5 @@ function controller($element) {
         this.renderChart(this.choreId, this.style);
        
     };
-
-    this.uiOnParamsChanged = params => {
-        if (params.choreId) this.choreId = params.choreId;
-        if (params.style) this.style = params.style;
-        return this.renderChart(this.choreId, this.style);
-    };
-
     
 }

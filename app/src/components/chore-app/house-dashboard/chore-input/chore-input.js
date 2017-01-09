@@ -26,7 +26,6 @@ function controller(User, Chore) {
                 arr.push(key);                
             }   
         }
-        console.log(arr);
         Chore.updateMany(arr);
         this.data = [];
     };

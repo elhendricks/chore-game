@@ -56,7 +56,6 @@ export default function routes($stateProvider, $urlRouterProvider) {
         name: 'charts',
         url: '/charts',
         component: 'chart',
-        // abstract: true,
         default: 'charts.detail',
         resolve: {
             user: ['userService', User => {
@@ -68,55 +67,30 @@ export default function routes($stateProvider, $urlRouterProvider) {
             house: ['id', 'houseService', (id, House) => {
                 return House.get(id);
             }],
-            chores: ['house', 'choreService', (house, choreService) => {
-                var choreArr = house.chores.map(chore => chore._id);
-                return choreService.getHouseChores({date: 'Jan 2017', chores: choreArr});
-            }]
+            
         }
     });
 
     $stateProvider.state({
         name: 'charts.detail',
-        url: '/:choreId?style',
+        url: '/:choreId?style&month&year',
         params: {
-            choreId: {
-                dynamic: true
-            },
-            style: {
-                dynamic: true
-            }
+
         },
         component: 'houseChart',
         resolve: {
             choreId: ['$transition$', t => t.params().choreId ],
-            style: ['$transition$', t => t.params().style]
+            style: ['$transition$', t => t.params().style],
+            year: ['$transition$', t => t.params().year],
+            month: ['$transition$', t => t.params().month],
+            chores: ['house', 'choreService', 'year', 'month', (house, choreService, year, month) => {
+                var choreArr = house.chores.map(chore => chore._id);
+                var date = new Date(year, month).toJSON();
+                var newChores = choreService.getHouseChores({chores: choreArr, date});
+                return newChores;
+            }]
         },
     });
-
-    // $stateProvider.state({
-    //     name: 'charts.allbar',
-    //     url: '/allbar',
-    //     component: 'choreBarChart',
-    // });
-
-    // $stateProvider.state({
-    //     name: 'charts.pie',
-    //     url: '/pie/:choreId?style',
-    //     resolve: {
-    //         choreId: ['$transition$', t => t.params().choreId],
-    //         style: ['$transition$', t => t.params().style]
-    //     },
-    //     component: 'chorePieChart',
-    // });
-
-    // $stateProvider.state({
-    //     name: 'charts.bar',
-    //     url: '/bar/:choreId',
-    //     resolve: {
-    //         choreId: ['$transition$', t => t.params().choreId]
-    //     },
-    //     component: 'houseBarChart',
-    // });
 
     $urlRouterProvider.otherwise('/');
 }

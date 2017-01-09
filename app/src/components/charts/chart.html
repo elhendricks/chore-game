@@ -15,8 +15,20 @@
         <md-input-container>
             <label>Select Chore</label>
             <md-select ng-model="$ctrl.selectedChore" ng-change="$ctrl.updateChart()">
-                <md-option ng-value="'all'">All Chores</md-option>
+                <md-option ng-value="'all'" selected>All Chores</md-option>
                 <md-option ng-repeat="chore in $ctrl.house.chores track by $index" ng-value="chore._id">{{chore.name}}</md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
+            <label>Select Month</label>
+            <md-select ng-model="$ctrl.selectedMonth" ng-change="$ctrl.updateChart()">
+                <md-option ng-repeat="(key, value) in {January: 0, February: 1, March: 2, April:3, May: 4, June: 5, July: 6, August: 7, September: 8, October: 9, November: 10, December: 11}" ng-value="value">{{key}}</md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
+            <label>Select Year</label>
+            <md-select ng-model="$ctrl.selectedYear" ng-change="$ctrl.updateChart()">
+                <md-option ng-repeat="year in [2016, 2017, 2018, 2019, 2020]" ng-value="year">{{year}}</md-option>
             </md-select>
         </md-input-container>
     </md-card>  
