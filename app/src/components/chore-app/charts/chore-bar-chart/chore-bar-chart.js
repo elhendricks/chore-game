@@ -9,26 +9,9 @@ export default {
     controller
 };
 
-// controller.$inject = ['$element'];
-
 function controller() {
 
     this.$onInit = () => {
-
-        
-
-        // the house target for each chore & name
-        // the house target for all chores & name
-
-        // the user total for each chore for Jan 17 & name
-        // the user total for all chores for Jan 17 & name
-        // let houseChores = this.house.chores.reduce((acc, curr) => {
-        //     var id = curr._id;
-        //     if (curr.name) {
-        //         return acc[id] = curr.name;
-        //     }
-        //     else return null;
-        // }, {});;
 
         this.choreTargets = this.house.chores.map(chore => {
             return chore.target;
